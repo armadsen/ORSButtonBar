@@ -20,18 +20,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface ORSButtonBarCell : NSButtonCell {
-    BOOL am_mouseOver;
-    BOOL am_mouseDown;
-    // private: basic layout and geometry data
-    NSBezierPath *am_controlPath;
-    NSBezierPath *am_innerControlPath;
-    NSSize am_lastFrameSize;
-    NSRect am_textRect;
-    SEL am_getBackgroundSelector;
-    
-    BOOL focused;
-}
+@interface ORSButtonBarCell : NSButtonCell
 
 + (NSColor *)offControlColor;
 + (NSColor *)offTextColor;

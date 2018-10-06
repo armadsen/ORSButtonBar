@@ -17,35 +17,20 @@
 
 extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 
+@protocol ORSButtonBarDelegate <NSObject>
 
-@interface NSObject (ORSButtonBarDelegate)
 - (void)buttonBarSelectionDidChange:(NSNotification *)aNotification;
+
 @end
 
-
 @interface ORSButtonBarView : NSView
-{
-    id delegate;
-    BOOL delegateRespondsToSelectionDidChange;
-    NSGradient *backgroundGradient;
-    NSColor *baselineSeparatorColor;
-    BOOL showsBaselineSeparator;
-    BOOL allowsMultipleSelection;
-    NSMutableArray *items;
-    ORSButtonBarCell *buttonCell;
-    ORSButtonBarSeparatorCell *separatorCell;
-    BOOL needsLayout;
-    
-    ORSButtonBarItem *focusedItem;
-}
-
 
 - (instancetype)initWithFrame:(NSRect)frame;
 
-@property (nonatomic, readonly, copy) ORSButtonBarCell *buttonCell;
+@property (nonatomic, readonly, strong) ORSButtonBarCell *buttonCell;
 @property (nonatomic, readonly, strong) ORSButtonBarSeparatorCell *separatorCell;
 
-@property (weak, nonatomic, readonly) NSArray *items;
+@property (nonatomic, strong, readonly) NSArray *items;
 
 @property (nonatomic, readonly, strong) ORSButtonBarItem *selectedItem;
 @property (nonatomic, readonly, copy) NSArray *selectedItems;
@@ -71,16 +56,13 @@ extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 @property (nonatomic, readonly) BOOL moveFocusToFirstItem;
 @property (nonatomic, readonly) BOOL moveFocusToLastItem;
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id<ORSButtonBarDelegate> delegate;
 
 @property (nonatomic) BOOL allowsMultipleSelection;
 
 @property (nonatomic, copy) NSGradient *backgroundGradient;
-
 @property (nonatomic, copy) NSColor *baselineSeparatorColor;
-
 @property (nonatomic) BOOL showsBaselineSeparator;
-
 @property (nonatomic) BOOL needsLayout;
 
 @property (nonatomic, strong) ORSButtonBarItem *focusedItem;

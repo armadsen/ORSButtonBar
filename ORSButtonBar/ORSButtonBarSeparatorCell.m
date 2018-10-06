@@ -10,18 +10,10 @@
 
 
 #import "ORSButtonBarSeparatorCell.h"
+#import "ORSButtonBarCell+SubclassMethods.h"
 #import "NSColor+ORSAdditions.h"
 
-
 static float am_backgroundInset = 1.5;
-
-@interface ORSButtonBarCell (Private)
-- (NSSize)lastFrameSize;
-- (void)setLastFrameSize:(NSSize)newLastFrameSize;
-- (void)setControlPath:(NSBezierPath *)newControlPath;
-- (float)calculateTextInsetForRadius:(float)radius font:(NSFont *)font;
-@end
-
 
 @implementation ORSButtonBarSeparatorCell
 
@@ -68,7 +60,7 @@ static float am_backgroundInset = 1.5;
     [transformation translateXBy:cellFrame.origin.x+am_backgroundInset yBy:cellFrame.origin.y+am_backgroundInset];
     textColor = [ORSButtonBarCell offTextColor];
     textColor = [textColor disabledColor];
-    path = [am_controlPath copy];
+    path = [self.controlPath copy];
     
     [NSGraphicsContext saveGraphicsState];
     [path transformUsingAffineTransform:transformation];

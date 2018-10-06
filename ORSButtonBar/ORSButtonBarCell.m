@@ -12,8 +12,8 @@
 //  2010-02-18  Andreas Mayer
 //  - removed deprecated invocations of -setCachesBezierPath:
 
-
 #import "ORSButtonBarCell.h"
+#import "ORSButtonBarCell+SubclassMethods.h"
 #import "NSBezierPath+ORSAdditons.h"
 #import "NSGradient+ORSButtonBar.h"
 #import "NSColor+ORSAdditions.h"
@@ -25,16 +25,16 @@ static float am_backgroundInset = 1.5;
 static float am_textGap = 1.5;
 static float am_bezierPathFlatness = 0.2;
 
+@interface ORSButtonBarCell ()
 
-@interface ORSButtonBarCell (Private)
-- (NSSize)lastFrameSize;
-- (void)setLastFrameSize:(NSSize)newLastFrameSize;
-- (float)calculateTextInsetForRadius:(float)radius font:(NSFont *)font;
-- (void)finishInit;
+@property (nonatomic, strong) NSBezierPath *innerControlPath;
+
 @end
 
-
 @implementation ORSButtonBarCell
+{
+    NSRect _textRect;
+}
 
 + (NSColor *)offControlColor
 {
@@ -263,108 +263,32 @@ static float am_bezierPathFlatness = 0.2;
     return self;
 }
 
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-    [super encodeWithCoder:coder];
-}
-
-
-
-- (NSBezierPath *)backgroundPath
-{
-    return am_controlPath;
-}
-
-- (void)setControlPath:(NSBezierPath *)newControlPath
-{
-    id old = nil;
-    
-    if (newControlPath != am_controlPath) {
-        old = am_controlPath;
-        am_controlPath = newControlPath;
-    }
-}
-
-- (NSBezierPath *)innerControlPath
-{
-    return am_innerControlPath;
-}
-
-- (void)setInnerControlPath:(NSBezierPath *)newInnerControlPath
-{
-    id old = nil;
-    
-    if (newInnerControlPath != am_innerControlPath) {
-        old = am_innerControlPath;
-        am_innerControlPath = newInnerControlPath;
-    }
-}
-
-- (NSSize)lastFrameSize
-{
-    return am_lastFrameSize;
-}
-
-- (void)setLastFrameSize:(NSSize)newLastFrameSize
-{
-    am_lastFrameSize = newLastFrameSize;
-}
-
-- (BOOL)mouseOver
-{
-    return am_mouseOver;
-}
-
-- (void)setMouseOver:(BOOL)newMouseOver
-{
-    am_mouseOver = newMouseOver;
-}
-
-- (BOOL)mouseDown
-{
-    return am_mouseDown;
-}
-
-- (void)setMouseDown:(BOOL)value
-{
-    am_mouseDown = value;
-}
-
-
 - (void)calculateLayoutForFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
     // bezier path for plate background
     [self setLastFrameSize:cellFrame.size];
     NSRect innerRect = NSInsetRect(cellFrame, am_backgroundInset, am_backgroundInset);
     // text rect
-    am_textRect = innerRect;
+    _textRect = innerRect;
     NSFont *font = self.font;
     NSDictionary *stringAttributes = @{NSFontAttributeName: font};
     NSAttributedString *string = [[NSAttributedString alloc] initWithString:self.title attributes:stringAttributes];
     NSSize textSize = [string size];
-    float radius = (am_lastFrameSize.height/2.0)-am_backgroundInset;
+    float radius = (self.lastFrameSize.height/2.0)-am_backgroundInset;
     // calculate minimum text inset
     float textInset;
     float h = font.ascender/2.0;
     textInset = ceilf(radius-sqrt(radius*radius - h*h));
-    am_textRect = NSInsetRect(am_textRect, textInset+am_textGap, 0);
-    am_textRect.size.height = textSize.height;
-    
-    //    // Deal with width
-    //    if (am_textRect.size.width < textSize.width)
-    //     {
-    //        cellFrame.size.width = textSize.width
-    //     }
-    
-    
-    
+    _textRect = NSInsetRect(_textRect, textInset+am_textGap, 0);
+    _textRect.size.height = textSize.height;
+        
     float capHeight = [font fixed_capHeight];
     float ascender = font.ascender;
     float yOrigin = innerRect.origin.y;
-    float offset = ((innerRect.size.height-am_textRect.size.height) / 2.0);
-    offset += (ascender-capHeight)-((am_textRect.size.height-capHeight) / 2.0);
+    float offset = ((innerRect.size.height-_textRect.size.height) / 2.0);
+    offset += (ascender-capHeight)-((_textRect.size.height-capHeight) / 2.0);
     yOrigin += floorf(offset);
-    am_textRect.origin.y = yOrigin;
+    _textRect.origin.y = yOrigin;
     
     // bezier path for button background
     innerRect.origin.x = 0;
@@ -384,7 +308,7 @@ static float am_bezierPathFlatness = 0.2;
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
 {
-    if ((am_lastFrameSize.width != cellFrame.size.width) || (am_lastFrameSize.height != cellFrame.size.height)) {
+    if ((self.lastFrameSize.width != cellFrame.size.width) || (self.lastFrameSize.height != cellFrame.size.height)) {
         [self calculateLayoutForFrame:cellFrame inView:controlView];
     }
     [self drawInteriorWithFrame:cellFrame inView:controlView];
@@ -407,14 +331,14 @@ static float am_bezierPathFlatness = 0.2;
             controlColor = [ORSButtonBarCell onControlColor];
             upperShadow = [ORSButtonBarCell onControlUpperShadow];
             lowerShadow = [ORSButtonBarCell onControlLowerShadow];
-            path = [am_innerControlPath copy];
+            path = [self.innerControlPath copy];
             textColor = [ORSButtonBarCell onTextColor];
             textShadow = [ORSButtonBarCell onTextShadow];
          }
         else // off
          { 
              controlColor = [ORSButtonBarCell offControlColor];
-             path = [am_controlPath copy];
+             path = [self.controlPath copy];
              textColor = [ORSButtonBarCell offTextColor];
              textShadow = [ORSButtonBarCell offTextShadow];
          }
@@ -428,18 +352,18 @@ static float am_bezierPathFlatness = 0.2;
               controlColor = [ORSButtonBarCell mouseDownControlColor];
               upperShadow = [ORSButtonBarCell mouseDownControlUpperShadow];
               lowerShadow = [ORSButtonBarCell mouseDownControlLowerShadow];
-              path = [am_innerControlPath copy];
+              path = [self.innerControlPath copy];
               textColor = [ORSButtonBarCell mouseDownTextColor];
               textShadow = [ORSButtonBarCell mouseDownTextShadow];
           } 
          else if (self.state == NSOnState) // on
           { 
-              if (am_mouseOver || self.highlighted) 
+              if (self.mouseOver || self.highlighted) 
                {
                   controlColor = [ORSButtonBarCell onMouseOverControlColor];
                   upperShadow = [ORSButtonBarCell onMouseOverControlUpperShadow];
                   lowerShadow = [ORSButtonBarCell onMouseOverControlLowerShadow];
-                  path = [am_innerControlPath copy];
+                  path = [self.innerControlPath copy];
                   textColor = [ORSButtonBarCell onMouseOverTextColor];
                   textShadow = [ORSButtonBarCell onMouseOverTextShadow];
                }
@@ -448,24 +372,24 @@ static float am_bezierPathFlatness = 0.2;
                   controlColor = [ORSButtonBarCell onControlColor];
                   upperShadow = [ORSButtonBarCell onControlUpperShadow];
                   lowerShadow = [ORSButtonBarCell onControlLowerShadow];
-                  path = [am_innerControlPath copy];
+                  path = [self.innerControlPath copy];
                   textColor = [ORSButtonBarCell onTextColor];
                   textShadow = [ORSButtonBarCell onTextShadow];
                }
           }
          else // off
           { 
-              if (am_mouseOver || self.highlighted) 
+              if (self.mouseOver || self.highlighted) 
                {
                   controlColor = [ORSButtonBarCell offMouseOverControlColor];
-                  path = [am_controlPath copy];
+                  path = [self.controlPath copy];
                   textColor = [ORSButtonBarCell offMouseOverTextColor];
                   textShadow = [ORSButtonBarCell offMouseOverTextShadow];
                } 
               else  
                {
                   controlColor = [ORSButtonBarCell offControlColor];
-                  path = [am_controlPath copy];
+                  path = [self.controlPath copy];
                   textColor = [ORSButtonBarCell offTextColor];
                   textShadow = [ORSButtonBarCell offTextShadow];
                }
@@ -524,7 +448,7 @@ static float am_bezierPathFlatness = 0.2;
     parapraphStyle.alignment = self.alignment;
     font = self.font;
     stringAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor, NSParagraphStyleAttributeName: parapraphStyle};
-    [self.title drawInRect:am_textRect withAttributes:stringAttributes];
+    [self.title drawInRect:_textRect withAttributes:stringAttributes];
     [NSGraphicsContext restoreGraphicsState];
 }
 
@@ -547,19 +471,6 @@ static float am_bezierPathFlatness = 0.2;
         result += (radius*0.5)+arrowWidth;
     }
     return result;
-}
-
-- (BOOL)isFocused; 
-{
-    return focused;
-}
-
-- (void)setFocused:(BOOL)value;
-{
-    if (focused != value) 
-     {
-        focused = value;
-     }
 }
 
 - (BOOL)trackMouse:(NSEvent *)theEvent inRect:(NSRect)cellFrame ofView:(NSView *)controlView untilMouseUp:(BOOL)untilMouseUp

@@ -13,27 +13,7 @@
 
 @class ORSButtonBarView;
 
-@interface ORSButtonBarItem : NSObject <NSCoding> {
-    id target;
-    SEL action;
-    BOOL enabled;
-    BOOL mouseOver;
-    BOOL active;
-    BOOL separatorItem;
-    BOOL overflowItem;
-    int state;
-    NSString *itemIdentifier;
-    int tag;
-    NSString *toolTip;
-    NSString *title;
-    NSString *alternateTitle;
-    NSMenu *overflowMenu;
-    NSRect frame;
-    NSTrackingRectTag trackingRectTag;
-    NSToolTipTag tooltipTag;
-    
-    ORSButtonBarView *parentButtonBar;
-}
+@interface ORSButtonBarItem : NSObject <NSCoding>
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;

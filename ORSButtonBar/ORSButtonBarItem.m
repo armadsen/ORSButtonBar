@@ -28,181 +28,62 @@
     return self;
 }
 
+#pragma mark - NSCoding
+
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
     NSString *identifier = [decoder decodeObjectForKey:@"AMBBIItemIdentifier"];
     self = [self initWithIdentifier:identifier];
     if (self) {
-        toolTip = [decoder decodeObjectForKey:@"AMBBIToolTip"];
-        title = [decoder decodeObjectForKey:@"AMBBITitle"];
-        alternateTitle = [decoder decodeObjectForKey:@"AMBBIAlternateTitle"];
-        target = [decoder decodeObjectForKey:@"AMBBITarget"];
-        action = NSSelectorFromString([decoder decodeObjectForKey:@"AMBBISelector"]);
-        enabled = [decoder decodeBoolForKey:@"AMBBISelector"];
-        active = [decoder decodeBoolForKey:@"AMBBIActive"];
-        separatorItem = [decoder decodeBoolForKey:@"AMBBISeparatorItem"];
-        overflowItem = [decoder decodeBoolForKey:@"AMBBIOverflowItem"];
-        state = [decoder decodeIntForKey:@"AMBBIState"];
-        tag = [decoder decodeIntForKey:@"AMBBITag"];
-        frame = [decoder decodeRectForKey:@"AMBBIFrame"];
+        _toolTip = [decoder decodeObjectForKey:@"AMBBIToolTip"];
+        _title = [decoder decodeObjectForKey:@"AMBBITitle"];
+        _alternateTitle = [decoder decodeObjectForKey:@"AMBBIAlternateTitle"];
+        _target = [decoder decodeObjectForKey:@"AMBBITarget"];
+        _action = NSSelectorFromString([decoder decodeObjectForKey:@"AMBBISelector"]);
+        _enabled = [decoder decodeBoolForKey:@"AMBBISelector"];
+        _active = [decoder decodeBoolForKey:@"AMBBIActive"];
+        _separatorItem = [decoder decodeBoolForKey:@"AMBBISeparatorItem"];
+        _overflowItem = [decoder decodeBoolForKey:@"AMBBIOverflowItem"];
+        _state = [decoder decodeIntForKey:@"AMBBIState"];
+        _tag = [decoder decodeIntForKey:@"AMBBITag"];
+        _frame = [decoder decodeRectForKey:@"AMBBIFrame"];
     }
     return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeObject:itemIdentifier forKey:@"AMBBIItemIdentifier"];
-    [coder encodeObject:toolTip forKey:@"AMBBIToolTip"];
-    [coder encodeObject:title forKey:@"AMBBITitle"];
-    [coder encodeObject:alternateTitle forKey:@"AMBBIAlternateTitle"];
-    [coder encodeConditionalObject:target forKey:@"AMBBITarget"];
-    [coder encodeObject:NSStringFromSelector(action) forKey:@"AMBBISelector"];
-    [coder encodeBool:enabled forKey:@"AMBBISelector"];
-    [coder encodeBool:active forKey:@"AMBBIActive"];
-    [coder encodeBool:separatorItem forKey:@"AMBBISeparatorItem"];
-    [coder encodeBool:overflowItem forKey:@"AMBBIOverflowItem"];
-    [coder encodeInt:state forKey:@"AMBBIState"];
-    [coder encodeInt:tag forKey:@"AMBBITag"];
-    [coder encodeRect:frame forKey:@"AMBBIFrame"];
+    [coder encodeObject:_itemIdentifier forKey:@"AMBBIItemIdentifier"];
+    [coder encodeObject:_toolTip forKey:@"AMBBIToolTip"];
+    [coder encodeObject:_title forKey:@"AMBBITitle"];
+    [coder encodeObject:_alternateTitle forKey:@"AMBBIAlternateTitle"];
+    [coder encodeConditionalObject:_target forKey:@"AMBBITarget"];
+    [coder encodeObject:NSStringFromSelector(_action) forKey:@"AMBBISelector"];
+    [coder encodeBool:_enabled forKey:@"AMBBISelector"];
+    [coder encodeBool:_active forKey:@"AMBBIActive"];
+    [coder encodeBool:_separatorItem forKey:@"AMBBISeparatorItem"];
+    [coder encodeBool:_overflowItem forKey:@"AMBBIOverflowItem"];
+    [coder encodeInt:_state forKey:@"AMBBIState"];
+    [coder encodeInt:_tag forKey:@"AMBBITag"];
+    [coder encodeRect:_frame forKey:@"AMBBIFrame"];
 }
 
-
-
-
-- (id)target
-{
-    return target;
-}
-
-- (void)setTarget:(id)value
-{
-    if (target != value) {
-        id old = target;
-        target = value;
-    }
-}
-
-- (SEL)action
-{
-    return action;
-}
-
-- (void)setAction:(SEL)value
-{
-    if (action != value) {
-        action = value;
-    }
-}
-
-- (BOOL)isEnabled
-{
-    return enabled;
-}
-
-- (void)setEnabled:(BOOL)value
-{
-    if ((enabled != value) && (![self isSeparatorItem])) {
-        enabled = value;
-    }
-}
-
-- (BOOL)isMouseOver
-{
-    return mouseOver;
-}
+#pragma mark - Properties
 
 - (void)setMouseOver:(BOOL)value
 {
-    if ((mouseOver != value) && (![self isSeparatorItem])) {
-        mouseOver = value;
+    if ((_mouseOver != value) && (![self isSeparatorItem])) {
+        _mouseOver = value;
     }
-}
-
-- (BOOL)isActive
-{
-    return active;
 }
 
 - (void)setActive:(BOOL)value
 {
-    if ((active != value) && (![self isSeparatorItem])) {
-        active = value;
+    if ((_active != value) && (![self isSeparatorItem])) {
+        _active = value;
     }
 }
 
-- (BOOL)isSeparatorItem
-{
-    return separatorItem;
-}
-
-- (void)setSeparatorItem:(BOOL)value
-{
-    if (separatorItem != value) {
-        separatorItem = value;
-    }
-}
-
-- (BOOL)isOverflowItem
-{
-    return overflowItem;
-}
-
-- (void)setOverflowItem:(BOOL)value
-{
-    if (overflowItem != value) {
-        overflowItem = value;
-    }
-}
-
-- (int)state
-{
-    return state;
-}
-
-- (void)setState:(int)value
-{
-    if (state != value) {
-        state = value;
-    }
-}
-
-- (NSString *)itemIdentifier
-{
-    return itemIdentifier;
-}
-
-- (void)setItemIdentifier:(NSString *)value
-{
-    if (itemIdentifier != value) {
-        id old = itemIdentifier;
-        itemIdentifier = value;
-    }
-}
-
-- (int)tag
-{
-    return tag;
-}
-
-- (void)setTag:(int)value
-{
-    if (tag != value) {
-        tag = value;
-    }
-}
-
-- (NSString *)toolTip
-{
-    return toolTip;
-}
-
-- (void)setToolTip:(NSString *)value
-{
-    if (toolTip != value) {
-        id old = toolTip;
-        toolTip = [value copy];
-    }
-}
 
 - (NSString *)view:(NSView *)view stringForToolTip:(NSToolTipTag)tag point:(NSPoint)point userData:(void *)userData
 {
@@ -213,100 +94,23 @@
     return result;
 }
 
-- (NSString *)title
-{
-    return title;
-}
-
 - (void)setTitle:(NSString *)value
 {
-    if (title != value) {
-        id old = title;
-        title = value;
+    if (_title != value) {
+        _title = value;
         
-        if ([[self parentButtonBar] respondsToSelector: @selector(setNeedsLayout:)])
-        {
-            [[self parentButtonBar] setNeedsLayout: YES];
+        if ([self.parentButtonBar respondsToSelector:@selector(setNeedsLayout:)]) {
+            [self.parentButtonBar setNeedsLayout: YES];
         }
     }
 }
 
-- (NSString *)alternateTitle
-{
-    return alternateTitle;
-}
-
-- (void)setAlternateTitle:(NSString *)value
-{
-    if (alternateTitle != value) {
-        id old = alternateTitle;
-        alternateTitle = value;
-    }
-}
-
-- (NSMenu *)overflowMenu
-{
-    return overflowMenu;
-}
-
-- (void)setOverflowMenu:(NSMenu *)value
-{
-    if (overflowMenu != value) {
-        id old = overflowMenu;
-        overflowMenu = value;
-    }
-}
-
-- (NSTrackingRectTag)trackingRectTag
-{
-    return trackingRectTag;
-}
-
-- (void)setTrackingRectTag:(NSTrackingRectTag)value
-{
-    trackingRectTag = value;
-}
-
-- (NSToolTipTag)tooltipTag 
-{
-    return tooltipTag;
-}
-
-- (void)setTooltipTag:(NSToolTipTag)value 
-{
-    if (tooltipTag != value)
-    {
-        tooltipTag = value;
-    }
-}
-
-- (NSRect)frame
-{
-    return frame;
-}
-
-- (void)setFrame:(NSRect)value
-{
-    frame = value;
-}
-
 - (void)setFrameOrigin:(NSPoint)origin
 {
-    frame.origin = origin;
+    _frame.origin = origin;
 }
 
-- (ORSButtonBarView *)parentButtonBar 
-{
-    return parentButtonBar;
-}
-
-- (void)setParentButtonBar:(ORSButtonBarView *)value 
-{
-    parentButtonBar = value;
-}
-
-#pragma mark -
-#pragma mark NSAccessibility Methods
+#pragma mark - NSAccessibility Methods
 
 -(NSArray *) accessibilityAttributeNames;
 {
@@ -346,7 +150,7 @@
     
     if ([attribute isEqualToString: NSAccessibilityParentAttribute])
     {
-        return [self parentButtonBar];
+        return self.parentButtonBar;
     }
     
     return nil;
@@ -375,7 +179,7 @@
 {
     if (![anAction isEqualToString: NSAccessibilityPressAction]) return;
     
-    [[self parentButtonBar] selectItemWithIdentifier: [self itemIdentifier]];
+    [self.parentButtonBar selectItemWithIdentifier: [self itemIdentifier]];
 }
 
 -(BOOL) accessibilityIsIgnored;

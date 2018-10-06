@@ -26,6 +26,7 @@
 		9D86DB1621687413008ECC31 /* ORSButtonBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0221687413008ECC31 /* ORSButtonBarItem.m */; };
 		9D86DB1721687413008ECC31 /* ORSButtonBarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DB0321687413008ECC31 /* ORSButtonBarCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D86DB1821687413008ECC31 /* NSFont+ORSFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0421687413008ECC31 /* NSFont+ORSFixes.m */; };
+		9D9BFCF1216887C8009D6151 /* ORSButtonBarCell+SubclassMethods.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D9BFCEF216887C8009D6151 /* ORSButtonBarCell+SubclassMethods.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		9D86DB0221687413008ECC31 /* ORSButtonBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORSButtonBarItem.m; sourceTree = "<group>"; };
 		9D86DB0321687413008ECC31 /* ORSButtonBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORSButtonBarCell.h; sourceTree = "<group>"; };
 		9D86DB0421687413008ECC31 /* NSFont+ORSFixes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFont+ORSFixes.m"; sourceTree = "<group>"; };
+		9D9BFCEF216887C8009D6151 /* ORSButtonBarCell+SubclassMethods.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ORSButtonBarCell+SubclassMethods.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 				9D86DAFC21687413008ECC31 /* ORSButtonBarView.h */,
 				9D86DAF221687413008ECC31 /* ORSButtonBarView.m */,
 				9D86DB0321687413008ECC31 /* ORSButtonBarCell.h */,
+				9D9BFCEF216887C8009D6151 /* ORSButtonBarCell+SubclassMethods.h */,
 				9D86DAFA21687413008ECC31 /* ORSButtonBarCell.m */,
 				9D86DAFE21687413008ECC31 /* ORSButtonBarItem.h */,
 				9D86DB0221687413008ECC31 /* ORSButtonBarItem.m */,
@@ -131,6 +134,7 @@
 			files = (
 				9D86DB1221687413008ECC31 /* ORSButtonBarItem.h in Headers */,
 				9D86DB1021687413008ECC31 /* ORSButtonBarView.h in Headers */,
+				9D9BFCF1216887C8009D6151 /* ORSButtonBarCell+SubclassMethods.h in Headers */,
 				9D86DB0D21687413008ECC31 /* NSColor+ORSAdditions.h in Headers */,
 				9D86DB1121687413008ECC31 /* NSGradient+ORSButtonBar.h in Headers */,
 				9D86DB0721687413008ECC31 /* NSFont+ORSFixes.h in Headers */,
