@@ -501,7 +501,8 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
         didChangeSelection = YES;
     }
     if (didChangeSelection) {
-        NSNotification *notification = [NSNotification notificationWithName:ORSButtonBarSelectionDidChangeNotification object:self userInfo:@{@"selectedItems": [self selectedItemIdentifiers]}];
+        NSDictionary *userInfo = @{@"selectedItems": self.selectedItemIdentifiers};
+        NSNotification *notification = [NSNotification notificationWithName:ORSButtonBarSelectionDidChangeNotification object:self userInfo:userInfo];
         NSAccessibilityPostNotification(self, NSAccessibilitySelectedChildrenChangedNotification);
         [self sendActionForItem:theItem];
         if ([self delegateRespondsToSelectionDidChange]) {
@@ -759,9 +760,8 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 
 - (NSArray *)selectedItemIdentifiers
 {
-    NSArray *selItems = [self selectedItems];
-    NSMutableArray *result = [NSMutableArray arrayWithCapacity: selItems.count];
-    for (ORSButtonBarItem *item in self.items) {
+    NSMutableArray *result = [NSMutableArray array];
+    for (ORSButtonBarItem *item in self.selectedItems) {
         [result addObject: [item itemIdentifier]];
     }
     
