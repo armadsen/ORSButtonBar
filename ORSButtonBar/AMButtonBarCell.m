@@ -15,6 +15,7 @@
 
 #import "AMButtonBarCell.h"
 #import "NSBezierPath_AMAdditons.h"
+#import "NSGradient_AMButtonBar.h"
 #import "NSColor_AMAdditions.h"
 #import "NSFont_AMFixes.h"
 #import "NSShadow_AMAdditions.h"

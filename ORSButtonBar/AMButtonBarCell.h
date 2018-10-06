@@ -19,8 +19,6 @@
 
 
 #import <AppKit/AppKit.h>
-#import "NSBezierPath_AMShading.h"
-
 
 @interface AMButtonBarCell : NSButtonCell {
 	BOOL am_mouseOver;

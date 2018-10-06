@@ -13,20 +13,18 @@
 		9D86DB0721687413008ECC31 /* NSFont_AMFixes.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAF321687413008ECC31 /* NSFont_AMFixes.h */; };
 		9D86DB0821687413008ECC31 /* NSShadow_AMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DAF421687413008ECC31 /* NSShadow_AMAdditions.m */; };
 		9D86DB0921687413008ECC31 /* AMButtonBarSeparatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DAF521687413008ECC31 /* AMButtonBarSeparatorCell.m */; };
-		9D86DB0A21687413008ECC31 /* NSBezierPath_AMShading.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAF621687413008ECC31 /* NSBezierPath_AMShading.h */; };
-		9D86DB0B21687413008ECC31 /* AMButtonBarSeparatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAF721687413008ECC31 /* AMButtonBarSeparatorCell.h */; };
+		9D86DB0B21687413008ECC31 /* AMButtonBarSeparatorCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAF721687413008ECC31 /* AMButtonBarSeparatorCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D86DB0C21687413008ECC31 /* NSColor_AMAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DAF821687413008ECC31 /* NSColor_AMAdditions.m */; };
 		9D86DB0D21687413008ECC31 /* NSColor_AMAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAF921687413008ECC31 /* NSColor_AMAdditions.h */; };
 		9D86DB0E21687413008ECC31 /* AMButtonBarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DAFA21687413008ECC31 /* AMButtonBarCell.m */; };
 		9D86DB0F21687413008ECC31 /* NSBezierPath_AMAdditons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DAFB21687413008ECC31 /* NSBezierPath_AMAdditons.m */; };
-		9D86DB1021687413008ECC31 /* AMButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFC21687413008ECC31 /* AMButtonBar.h */; };
-		9D86DB1121687413008ECC31 /* NSGradient_AMButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFD21687413008ECC31 /* NSGradient_AMButtonBar.h */; };
-		9D86DB1221687413008ECC31 /* AMButtonBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFE21687413008ECC31 /* AMButtonBarItem.h */; };
+		9D86DB1021687413008ECC31 /* AMButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFC21687413008ECC31 /* AMButtonBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D86DB1121687413008ECC31 /* NSGradient_AMButtonBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFD21687413008ECC31 /* NSGradient_AMButtonBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9D86DB1221687413008ECC31 /* AMButtonBarItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFE21687413008ECC31 /* AMButtonBarItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D86DB1321687413008ECC31 /* NSBezierPath_AMAdditons.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DAFF21687413008ECC31 /* NSBezierPath_AMAdditons.h */; };
-		9D86DB1421687413008ECC31 /* NSBezierPath_AMShading.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0021687413008ECC31 /* NSBezierPath_AMShading.m */; };
 		9D86DB1521687413008ECC31 /* NSGradient_AMButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0121687413008ECC31 /* NSGradient_AMButtonBar.m */; };
 		9D86DB1621687413008ECC31 /* AMButtonBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0221687413008ECC31 /* AMButtonBarItem.m */; };
-		9D86DB1721687413008ECC31 /* AMButtonBarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DB0321687413008ECC31 /* AMButtonBarCell.h */; };
+		9D86DB1721687413008ECC31 /* AMButtonBarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9D86DB0321687413008ECC31 /* AMButtonBarCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9D86DB1821687413008ECC31 /* NSFont_AMFixes.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D86DB0421687413008ECC31 /* NSFont_AMFixes.m */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +37,6 @@
 		9D86DAF321687413008ECC31 /* NSFont_AMFixes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSFont_AMFixes.h; sourceTree = "<group>"; };
 		9D86DAF421687413008ECC31 /* NSShadow_AMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSShadow_AMAdditions.m; sourceTree = "<group>"; };
 		9D86DAF521687413008ECC31 /* AMButtonBarSeparatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMButtonBarSeparatorCell.m; sourceTree = "<group>"; };
-		9D86DAF621687413008ECC31 /* NSBezierPath_AMShading.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBezierPath_AMShading.h; sourceTree = "<group>"; };
 		9D86DAF721687413008ECC31 /* AMButtonBarSeparatorCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMButtonBarSeparatorCell.h; sourceTree = "<group>"; };
 		9D86DAF821687413008ECC31 /* NSColor_AMAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSColor_AMAdditions.m; sourceTree = "<group>"; };
 		9D86DAF921687413008ECC31 /* NSColor_AMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSColor_AMAdditions.h; sourceTree = "<group>"; };
@@ -49,7 +46,6 @@
 		9D86DAFD21687413008ECC31 /* NSGradient_AMButtonBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSGradient_AMButtonBar.h; sourceTree = "<group>"; };
 		9D86DAFE21687413008ECC31 /* AMButtonBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMButtonBarItem.h; sourceTree = "<group>"; };
 		9D86DAFF21687413008ECC31 /* NSBezierPath_AMAdditons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSBezierPath_AMAdditons.h; sourceTree = "<group>"; };
-		9D86DB0021687413008ECC31 /* NSBezierPath_AMShading.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSBezierPath_AMShading.m; sourceTree = "<group>"; };
 		9D86DB0121687413008ECC31 /* NSGradient_AMButtonBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSGradient_AMButtonBar.m; sourceTree = "<group>"; };
 		9D86DB0221687413008ECC31 /* AMButtonBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AMButtonBarItem.m; sourceTree = "<group>"; };
 		9D86DB0321687413008ECC31 /* AMButtonBarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AMButtonBarCell.h; sourceTree = "<group>"; };
@@ -96,8 +92,6 @@
 				9D86DAF521687413008ECC31 /* AMButtonBarSeparatorCell.m */,
 				9D86DAFF21687413008ECC31 /* NSBezierPath_AMAdditons.h */,
 				9D86DAFB21687413008ECC31 /* NSBezierPath_AMAdditons.m */,
-				9D86DAF621687413008ECC31 /* NSBezierPath_AMShading.h */,
-				9D86DB0021687413008ECC31 /* NSBezierPath_AMShading.m */,
 				9D86DAF921687413008ECC31 /* NSColor_AMAdditions.h */,
 				9D86DAF821687413008ECC31 /* NSColor_AMAdditions.m */,
 				9D86DAF321687413008ECC31 /* NSFont_AMFixes.h */,
@@ -137,7 +131,6 @@
 			files = (
 				9D86DB1221687413008ECC31 /* AMButtonBarItem.h in Headers */,
 				9D86DB1021687413008ECC31 /* AMButtonBar.h in Headers */,
-				9D86DB0A21687413008ECC31 /* NSBezierPath_AMShading.h in Headers */,
 				9D86DB0D21687413008ECC31 /* NSColor_AMAdditions.h in Headers */,
 				9D86DB1121687413008ECC31 /* NSGradient_AMButtonBar.h in Headers */,
 				9D86DB0721687413008ECC31 /* NSFont_AMFixes.h in Headers */,
@@ -223,7 +216,6 @@
 				9D86DB1621687413008ECC31 /* AMButtonBarItem.m in Sources */,
 				9D86DB0E21687413008ECC31 /* AMButtonBarCell.m in Sources */,
 				9D86DB0621687413008ECC31 /* AMButtonBar.m in Sources */,
-				9D86DB1421687413008ECC31 /* NSBezierPath_AMShading.m in Sources */,
 				9D86DB0F21687413008ECC31 /* NSBezierPath_AMAdditons.m in Sources */,
 				9D86DB0921687413008ECC31 /* AMButtonBarSeparatorCell.m in Sources */,
 			);

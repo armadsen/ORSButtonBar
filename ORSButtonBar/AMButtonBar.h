@@ -10,7 +10,6 @@
 
 
 #import <Cocoa/Cocoa.h>
-#import "NSGradient_AMButtonBar.h"
 #import "AMButtonBarItem.h"
 #import "AMButtonBarCell.h"
 #import "AMButtonBarSeparatorCell.h"
