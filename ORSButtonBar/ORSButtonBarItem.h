@@ -14,83 +14,66 @@
 @class ORSButtonBarView;
 
 @interface ORSButtonBarItem : NSObject <NSCoding> {
-	id target;
-	SEL action;
-	BOOL enabled;
-	BOOL mouseOver;
-	BOOL active;
-	BOOL separatorItem;
-	BOOL overflowItem;
-	int state;
-	NSString *itemIdentifier;
-	int tag;
-	NSString *toolTip;
-	NSString *title;
-	NSString *alternateTitle;
-	NSMenu *overflowMenu;
-	NSRect frame;
-	NSTrackingRectTag trackingRectTag;
-	NSToolTipTag tooltipTag;
-	
-	ORSButtonBarView *parentButtonBar;
+    id target;
+    SEL action;
+    BOOL enabled;
+    BOOL mouseOver;
+    BOOL active;
+    BOOL separatorItem;
+    BOOL overflowItem;
+    int state;
+    NSString *itemIdentifier;
+    int tag;
+    NSString *toolTip;
+    NSString *title;
+    NSString *alternateTitle;
+    NSMenu *overflowMenu;
+    NSRect frame;
+    NSTrackingRectTag trackingRectTag;
+    NSToolTipTag tooltipTag;
+    
+    ORSButtonBarView *parentButtonBar;
 }
 
-- (id)initWithIdentifier:(NSString *)identifier;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithIdentifier:(NSString *)identifier NS_DESIGNATED_INITIALIZER;
 
-- (id)target;
-- (void)setTarget:(id)value;
+@property (nonatomic, assign) id target;
 
-- (SEL)action;
-- (void)setAction:(SEL)value;
+@property (nonatomic) SEL action;
 
-- (BOOL)isEnabled;
-- (void)setEnabled:(BOOL)value;
+@property (nonatomic, getter=isEnabled) BOOL enabled;
 
-- (BOOL)isMouseOver;
-- (void)setMouseOver:(BOOL)value;
+@property (nonatomic, getter=isMouseOver) BOOL mouseOver;
 
-- (BOOL)isActive;
-- (void)setActive:(BOOL)value;
+@property (nonatomic, getter=isActive) BOOL active;
 
-- (BOOL)isSeparatorItem;
-- (void)setSeparatorItem:(BOOL)value;
+@property (nonatomic, getter=isSeparatorItem) BOOL separatorItem;
 
-- (BOOL)isOverflowItem;
-- (void)setOverflowItem:(BOOL)value;
+@property (nonatomic, getter=isOverflowItem) BOOL overflowItem;
 
-- (int)state;
-- (void)setState:(int)value;
+@property (nonatomic) int state;
 
-- (NSString *)itemIdentifier;
-- (void)setItemIdentifier:(NSString *)value;
+@property (nonatomic, copy) NSString *itemIdentifier;
 
-- (int)tag;
-- (void)setTag:(int)value;
+@property (nonatomic) int tag;
 
-- (NSString *)toolTip;
-- (void)setToolTip:(NSString *)value;
+@property (nonatomic, copy) NSString *toolTip;
 
-- (NSString *)title;
-- (void)setTitle:(NSString *)value;
+@property (nonatomic, copy) NSString *title;
 
-- (NSString *)alternateTitle;
-- (void)setAlternateTitle:(NSString *)value;
+@property (nonatomic, copy) NSString *alternateTitle;
 
-- (NSMenu *)overflowMenu;
-- (void)setOverflowMenu:(NSMenu *)value;
+@property (nonatomic, copy) NSMenu *overflowMenu;
 
-- (NSTrackingRectTag)trackingRectTag;
-- (void)setTrackingRectTag:(NSTrackingRectTag)value;
+@property (nonatomic) NSTrackingRectTag trackingRectTag;
 
-- (NSToolTipTag)tooltipTag;
-- (void)setTooltipTag:(NSToolTipTag)value;
+@property (nonatomic) NSToolTipTag tooltipTag;
 
-- (NSRect)frame;
-- (void)setFrame:(NSRect)value;
+@property (nonatomic) NSRect frame;
 
 - (void)setFrameOrigin:(NSPoint)origin;
 
-- (ORSButtonBarView *)parentButtonBar;
-- (void)setParentButtonBar:(ORSButtonBarView *)value;
+@property (nonatomic, strong) ORSButtonBarView *parentButtonBar;
 
 @end

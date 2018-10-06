@@ -5,32 +5,32 @@
 //  Created by Andreas on Sat 2007-02-10
 //  Copyright (c) 2004 Andreas Mayer. All rights reserved.
 
-//	different representations:
+//    different representations:
 // - off
-//		(no background, text, text shadow)
+//        (no background, text, text shadow)
 // - off + mouse over
-//		(light background without shadow, text, text shadow)
+//        (light background without shadow, text, text shadow)
 // - on
-//		(medium background, top shadow, bottom light (shadow), text, text shadow)
+//        (medium background, top shadow, bottom light (shadow), text, text shadow)
 // - on + mouse over
-//		(light background, top shadow, bottom light (shadow), text, text shadow)
+//        (light background, top shadow, bottom light (shadow), text, text shadow)
 // - on/off + mouse down
-//		(dark background, top shadow, bottom light (shadow), text, text shadow)
+//        (dark background, top shadow, bottom light (shadow), text, text shadow)
 
 
 #import <AppKit/AppKit.h>
 
 @interface ORSButtonBarCell : NSButtonCell {
-	BOOL am_mouseOver;
-	BOOL am_mouseDown;
-	// private: basic layout and geometry data
-	NSBezierPath *am_controlPath;
-	NSBezierPath *am_innerControlPath;
-	NSSize am_lastFrameSize;
-	NSRect am_textRect;
-	SEL am_getBackgroundSelector;
-	
-	BOOL focused;
+    BOOL am_mouseOver;
+    BOOL am_mouseDown;
+    // private: basic layout and geometry data
+    NSBezierPath *am_controlPath;
+    NSBezierPath *am_innerControlPath;
+    NSSize am_lastFrameSize;
+    NSRect am_textRect;
+    SEL am_getBackgroundSelector;
+    
+    BOOL focused;
 }
 
 + (NSColor *)offControlColor;
@@ -59,15 +59,12 @@
 + (NSColor *)mouseDownTextColor;
 + (NSShadow *)mouseDownTextShadow;
 
-- (BOOL)mouseOver;
-- (void)setMouseOver:(BOOL)newMouseOver;
+@property (nonatomic) BOOL mouseOver;
 
-- (BOOL)mouseDown;
-- (void)setMouseDown:(BOOL)newMouseDown;
+@property (nonatomic) BOOL mouseDown;
 
 - (float)widthForFrame:(NSRect)frameRect;
 
-- (BOOL)isFocused;
-- (void)setFocused:(BOOL)value;
+@property (nonatomic, getter=isFocused) BOOL focused;
 
 @end

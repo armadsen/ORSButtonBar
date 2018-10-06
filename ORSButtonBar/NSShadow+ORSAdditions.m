@@ -13,11 +13,11 @@
 
 + (NSShadow *)shadowWithColor:(NSColor *)color blurRadius:(float)radius offset:(NSSize)offset
 {
-	NSShadow *result = [[[NSShadow alloc] init] autorelease];
-	[result setShadowOffset:offset];
-	[result setShadowBlurRadius:radius];
-	[result setShadowColor:color];
-	return result;
+    NSShadow *result = [[[NSShadow alloc] init] autorelease];
+    result.shadowOffset = offset;
+    result.shadowBlurRadius = radius;
+    result.shadowColor = color;
+    return result;
 }
 
 
