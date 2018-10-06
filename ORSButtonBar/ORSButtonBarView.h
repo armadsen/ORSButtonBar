@@ -12,7 +12,8 @@
 #import <Cocoa/Cocoa.h>
 #import "ORSButtonBarItem.h"
 #import "ORSButtonBarCell.h"
-#import "ORSButtonBarSeparatorCell.h"
+
+@class ORSButtonBarSeparatorCell;
 
 extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 

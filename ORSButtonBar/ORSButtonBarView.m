@@ -12,6 +12,7 @@
 #import "ORSButtonBarView.h"
 #import "ORSButtonBarItem.h"
 #import "ORSButtonBarCell.h"
+#import "ORSButtonBarSeparatorCell.h"
 #import "NSGradient+ORSButtonBar.h"
 
 float const AM_START_GAP_WIDTH = 8.0;
