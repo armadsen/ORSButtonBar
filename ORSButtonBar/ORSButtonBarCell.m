@@ -14,7 +14,6 @@
 
 #import "ORSButtonBarCell.h"
 #import "ORSButtonBarCell+SubclassMethods.h"
-#import "NSBezierPath+ORSAdditons.h"
 #import "NSGradient+ORSButtonBar.h"
 #import "NSColor+ORSAdditions.h"
 #import "NSFont+ORSFixes.h"
@@ -240,7 +239,7 @@ static float am_bezierPathFlatness = 0.2;
     return mouseDownTextShadow;
 }
 
-
+#pragma mark - Instance Methods
 
 - (instancetype)initTextCell:(NSString *)aString
 {
@@ -281,7 +280,7 @@ static float am_bezierPathFlatness = 0.2;
     textInset = ceilf(radius-sqrt(radius*radius - h*h));
     _textRect = NSInsetRect(_textRect, textInset+am_textGap, 0);
     _textRect.size.height = textSize.height;
-        
+    
     float capHeight = [font fixed_capHeight];
     float ascender = font.ascender;
     float yOrigin = innerRect.origin.y;
@@ -293,17 +292,12 @@ static float am_bezierPathFlatness = 0.2;
     // bezier path for button background
     innerRect.origin.x = 0;
     innerRect.origin.y = 0;
-    
-    id returnValue;
-    returnValue = [NSBezierPath bezierPathWithPlateInRect:innerRect];
-    [self setControlPath:returnValue];
+    self.controlPath = [NSBezierPath bezierPathWithRoundedRect:innerRect xRadius:4 yRadius:4];
     
     // bezier path for pressed button (with gap for shadows)
     innerRect.size.height--;
     innerRect.origin.y++;
-    
-    returnValue = [NSBezierPath bezierPathWithPlateInRect:innerRect];
-    [self setInnerControlPath:returnValue];
+    self.innerControlPath = [NSBezierPath bezierPathWithRoundedRect:innerRect xRadius:4 yRadius:4];
 }
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView
@@ -325,83 +319,83 @@ static float am_bezierPathFlatness = 0.2;
     NSAffineTransform *transformation = [NSAffineTransform transform];
     [transformation translateXBy:cellFrame.origin.x+am_backgroundInset yBy:cellFrame.origin.y+am_backgroundInset];
     if (!self.enabled)  // disabled
-     {
-        if (self.state == NSOnState) // on 
-         {
+    {
+        if (self.state == NSOnState) // on
+        {
             controlColor = [ORSButtonBarCell onControlColor];
             upperShadow = [ORSButtonBarCell onControlUpperShadow];
             lowerShadow = [ORSButtonBarCell onControlLowerShadow];
             path = [self.innerControlPath copy];
             textColor = [ORSButtonBarCell onTextColor];
             textShadow = [ORSButtonBarCell onTextShadow];
-         }
+        }
         else // off
-         { 
-             controlColor = [ORSButtonBarCell offControlColor];
-             path = [self.controlPath copy];
-             textColor = [ORSButtonBarCell offTextColor];
-             textShadow = [ORSButtonBarCell offTextShadow];
-         }
+        {
+            controlColor = [ORSButtonBarCell offControlColor];
+            path = [self.controlPath copy];
+            textColor = [ORSButtonBarCell offTextColor];
+            textShadow = [ORSButtonBarCell offTextShadow];
+        }
         controlColor = [controlColor disabledColor];
         textColor = [textColor disabledColor];
-     }
+    }
     else  // enabled
-     { // enabled
-         if (self.highlighted) // mouse down
-          { 
-              controlColor = [ORSButtonBarCell mouseDownControlColor];
-              upperShadow = [ORSButtonBarCell mouseDownControlUpperShadow];
-              lowerShadow = [ORSButtonBarCell mouseDownControlLowerShadow];
-              path = [self.innerControlPath copy];
-              textColor = [ORSButtonBarCell mouseDownTextColor];
-              textShadow = [ORSButtonBarCell mouseDownTextShadow];
-          } 
-         else if (self.state == NSOnState) // on
-          { 
-              if (self.mouseOver || self.highlighted) 
-               {
-                  controlColor = [ORSButtonBarCell onMouseOverControlColor];
-                  upperShadow = [ORSButtonBarCell onMouseOverControlUpperShadow];
-                  lowerShadow = [ORSButtonBarCell onMouseOverControlLowerShadow];
-                  path = [self.innerControlPath copy];
-                  textColor = [ORSButtonBarCell onMouseOverTextColor];
-                  textShadow = [ORSButtonBarCell onMouseOverTextShadow];
-               }
-              else 
-               {
-                  controlColor = [ORSButtonBarCell onControlColor];
-                  upperShadow = [ORSButtonBarCell onControlUpperShadow];
-                  lowerShadow = [ORSButtonBarCell onControlLowerShadow];
-                  path = [self.innerControlPath copy];
-                  textColor = [ORSButtonBarCell onTextColor];
-                  textShadow = [ORSButtonBarCell onTextShadow];
-               }
-          }
-         else // off
-          { 
-              if (self.mouseOver || self.highlighted) 
-               {
-                  controlColor = [ORSButtonBarCell offMouseOverControlColor];
-                  path = [self.controlPath copy];
-                  textColor = [ORSButtonBarCell offMouseOverTextColor];
-                  textShadow = [ORSButtonBarCell offMouseOverTextShadow];
-               } 
-              else  
-               {
-                  controlColor = [ORSButtonBarCell offControlColor];
-                  path = [self.controlPath copy];
-                  textColor = [ORSButtonBarCell offTextColor];
-                  textShadow = [ORSButtonBarCell offTextShadow];
-               }
-          }
-     }
+    { // enabled
+        if (self.highlighted) // mouse down
+        {
+            controlColor = [ORSButtonBarCell mouseDownControlColor];
+            upperShadow = [ORSButtonBarCell mouseDownControlUpperShadow];
+            lowerShadow = [ORSButtonBarCell mouseDownControlLowerShadow];
+            path = [self.innerControlPath copy];
+            textColor = [ORSButtonBarCell mouseDownTextColor];
+            textShadow = [ORSButtonBarCell mouseDownTextShadow];
+        }
+        else if (self.state == NSOnState) // on
+        {
+            if (self.mouseOver || self.highlighted)
+            {
+                controlColor = [ORSButtonBarCell onMouseOverControlColor];
+                upperShadow = [ORSButtonBarCell onMouseOverControlUpperShadow];
+                lowerShadow = [ORSButtonBarCell onMouseOverControlLowerShadow];
+                path = [self.innerControlPath copy];
+                textColor = [ORSButtonBarCell onMouseOverTextColor];
+                textShadow = [ORSButtonBarCell onMouseOverTextShadow];
+            }
+            else
+            {
+                controlColor = [ORSButtonBarCell onControlColor];
+                upperShadow = [ORSButtonBarCell onControlUpperShadow];
+                lowerShadow = [ORSButtonBarCell onControlLowerShadow];
+                path = [self.innerControlPath copy];
+                textColor = [ORSButtonBarCell onTextColor];
+                textShadow = [ORSButtonBarCell onTextShadow];
+            }
+        }
+        else // off
+        {
+            if (self.mouseOver || self.highlighted)
+            {
+                controlColor = [ORSButtonBarCell offMouseOverControlColor];
+                path = [self.controlPath copy];
+                textColor = [ORSButtonBarCell offMouseOverTextColor];
+                textShadow = [ORSButtonBarCell offMouseOverTextShadow];
+            }
+            else
+            {
+                controlColor = [ORSButtonBarCell offControlColor];
+                path = [self.controlPath copy];
+                textColor = [ORSButtonBarCell offTextColor];
+                textShadow = [ORSButtonBarCell offTextShadow];
+            }
+        }
+    }
     
     [NSGraphicsContext saveGraphicsState];
     [path transformUsingAffineTransform:transformation];
     path.lineWidth = 0.0;
     path.flatness = am_bezierPathFlatness;
     if (upperShadow)  // draw two halves with shadow
-     {
+    {
         [controlColor set];
         [NSGraphicsContext saveGraphicsState];
         // adjust clipping rectangle
@@ -422,22 +416,22 @@ static float am_bezierPathFlatness = 0.2;
         halfFrame.size.height = 2;
         [NSBezierPath clipRect:halfFrame];
         [path fill];
-     } 
+    }
     else // draw one path only
-     { 
-         [controlColor set];
-         [path fill];
-     }
+    {
+        [controlColor set];
+        [path fill];
+    }
     [NSGraphicsContext restoreGraphicsState];
     
     if ([self isFocused])
-     {
+    {
         NSRect focusRingFrame = cellFrame;
         [NSGraphicsContext saveGraphicsState];
         NSSetFocusRingStyle(NSFocusRingOnly);
-        [[NSBezierPath bezierPathWithPlateInRect: NSInsetRect(focusRingFrame,2.5,2.5)] fill];
-        [NSGraphicsContext restoreGraphicsState];        
-     }
+        [[NSBezierPath bezierPathWithRoundedRect:NSInsetRect(focusRingFrame,2.5,2.5) xRadius:4 yRadius:4] fill];
+        [NSGraphicsContext restoreGraphicsState];
+    }
     
     [NSGraphicsContext saveGraphicsState];
     [textShadow set];
