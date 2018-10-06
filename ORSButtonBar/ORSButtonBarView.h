@@ -51,10 +51,10 @@ extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 - (void)selectItemWithIdentifier:(NSString *)identifier;
 - (void)selectItemsWithIdentifiers:(NSArray *)identifierList;
 
-@property (nonatomic, readonly) BOOL moveFocusToNextItem;
-@property (nonatomic, readonly) BOOL moveFocusToPreviousItem;
-@property (nonatomic, readonly) BOOL moveFocusToFirstItem;
-@property (nonatomic, readonly) BOOL moveFocusToLastItem;
+- (BOOL)moveFocusToNextItem;
+- (BOOL)moveFocusToPreviousItem;
+- (BOOL)moveFocusToFirstItem;
+- (BOOL)moveFocusToLastItem;
 
 @property (nonatomic, weak) id<ORSButtonBarDelegate> delegate;
 
