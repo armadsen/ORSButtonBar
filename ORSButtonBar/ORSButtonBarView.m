@@ -459,7 +459,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
     point = [self convertPoint:point fromView:nil];
     ORSButtonBarItem *item = [self itemAtPoint:point];
     if (item && [item isEnabled]) {
-        int oldState = [item state];
+        NSControlStateValue oldState = [item state];
         [item setState:NSOnState];
         [item setActive:YES];
         [self prepareCellWithItem:item];

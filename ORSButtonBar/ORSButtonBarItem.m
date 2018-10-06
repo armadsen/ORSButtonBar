@@ -9,6 +9,10 @@
 #import "ORSButtonBarItem.h"
 #import "ORSButtonBarView.h"
 
+@interface ORSButtonBarItem ()
+
+@end
+
 @implementation ORSButtonBarItem
 
 - (instancetype)init
@@ -44,7 +48,7 @@
         _active = [decoder decodeBoolForKey:@"AMBBIActive"];
         _separatorItem = [decoder decodeBoolForKey:@"AMBBISeparatorItem"];
         _overflowItem = [decoder decodeBoolForKey:@"AMBBIOverflowItem"];
-        _state = [decoder decodeIntForKey:@"AMBBIState"];
+        _state = [decoder decodeIntegerForKey:@"AMBBIState"];
         _tag = [decoder decodeIntForKey:@"AMBBITag"];
         _frame = [decoder decodeRectForKey:@"AMBBIFrame"];
     }
@@ -63,7 +67,7 @@
     [coder encodeBool:_active forKey:@"AMBBIActive"];
     [coder encodeBool:_separatorItem forKey:@"AMBBISeparatorItem"];
     [coder encodeBool:_overflowItem forKey:@"AMBBIOverflowItem"];
-    [coder encodeInt:_state forKey:@"AMBBIState"];
+    [coder encodeInteger:_state forKey:@"AMBBIState"];
     [coder encodeInt:_tag forKey:@"AMBBITag"];
     [coder encodeRect:_frame forKey:@"AMBBIFrame"];
 }
