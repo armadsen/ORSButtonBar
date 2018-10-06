@@ -45,7 +45,7 @@ extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 @property (nonatomic, readonly, copy) ORSButtonBarCell *buttonCell;
 @property (nonatomic, readonly, strong) ORSButtonBarSeparatorCell *separatorCell;
 
-@property (nonatomic, readonly) NSArray *items;
+@property (weak, nonatomic, readonly) NSArray *items;
 
 @property (nonatomic, readonly, strong) ORSButtonBarItem *selectedItem;
 @property (nonatomic, readonly, copy) NSArray *selectedItems;
@@ -71,7 +71,7 @@ extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 @property (nonatomic, readonly) BOOL moveFocusToFirstItem;
 @property (nonatomic, readonly) BOOL moveFocusToLastItem;
 
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, weak) id delegate;
 
 @property (nonatomic) BOOL allowsMultipleSelection;
 

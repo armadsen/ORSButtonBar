@@ -30,12 +30,12 @@
 
 - (instancetype)initWithCoder:(NSCoder *)decoder
 {
-    NSString *identifier = [[decoder decodeObjectForKey:@"AMBBIItemIdentifier"] retain];
+    NSString *identifier = [decoder decodeObjectForKey:@"AMBBIItemIdentifier"];
     self = [self initWithIdentifier:identifier];
     if (self) {
-        toolTip = [[decoder decodeObjectForKey:@"AMBBIToolTip"] retain];
-        title = [[decoder decodeObjectForKey:@"AMBBITitle"] retain];
-        alternateTitle = [[decoder decodeObjectForKey:@"AMBBIAlternateTitle"] retain];
+        toolTip = [decoder decodeObjectForKey:@"AMBBIToolTip"];
+        title = [decoder decodeObjectForKey:@"AMBBITitle"];
+        alternateTitle = [decoder decodeObjectForKey:@"AMBBIAlternateTitle"];
         target = [decoder decodeObjectForKey:@"AMBBITarget"];
         action = NSSelectorFromString([decoder decodeObjectForKey:@"AMBBISelector"]);
         enabled = [decoder decodeBoolForKey:@"AMBBISelector"];
@@ -67,15 +67,6 @@
 }
 
 
-- (void)dealloc
-{
-    [overflowMenu release];
-    [itemIdentifier release];
-    [toolTip release];
-    [title release];
-    [alternateTitle release];
-    [super dealloc];
-}
 
 
 - (id)target
@@ -87,8 +78,7 @@
 {
     if (target != value) {
         id old = target;
-        target = [value retain];
-        [old release];
+        target = value;
     }
 }
 
@@ -185,8 +175,7 @@
 {
     if (itemIdentifier != value) {
         id old = itemIdentifier;
-        itemIdentifier = [value retain];
-        [old release];
+        itemIdentifier = value;
     }
 }
 
@@ -212,7 +201,6 @@
     if (toolTip != value) {
         id old = toolTip;
         toolTip = [value copy];
-        [old release];
     }
 }
 
@@ -234,8 +222,7 @@
 {
     if (title != value) {
         id old = title;
-        title = [value retain];
-        [old release];
+        title = value;
         
         if ([[self parentButtonBar] respondsToSelector: @selector(setNeedsLayout:)])
         {
@@ -253,8 +240,7 @@
 {
     if (alternateTitle != value) {
         id old = alternateTitle;
-        alternateTitle = [value retain];
-        [old release];
+        alternateTitle = value;
     }
 }
 
@@ -267,8 +253,7 @@
 {
     if (overflowMenu != value) {
         id old = overflowMenu;
-        overflowMenu = [value retain];
-        [old release];
+        overflowMenu = value;
     }
 }
 

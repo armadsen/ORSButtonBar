@@ -40,7 +40,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *offControlColor = nil;
     if (!offControlColor) {
-        offControlColor = [[NSColor clearColor] retain];
+        offControlColor = [NSColor clearColor];
     }
     return offControlColor;
 }
@@ -49,7 +49,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *offTextColor = nil;
     if (!offTextColor) {
-        offTextColor = [[NSColor colorWithCalibratedWhite:0 alpha:1] retain];
+        offTextColor = [NSColor colorWithCalibratedWhite:0 alpha:1];
     }
     return offTextColor;
 }
@@ -59,7 +59,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *offTextShadow = nil;
     if (!offTextShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:1 alpha:1];
-        offTextShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)] retain];
+        offTextShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)];
     }
     return offTextShadow;
 }
@@ -69,7 +69,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *offMouseOverControlColor = nil;
     if (!offMouseOverControlColor) {
-        offMouseOverControlColor = [[NSColor colorWithCalibratedWhite:.5 alpha:.5] retain];
+        offMouseOverControlColor = [NSColor colorWithCalibratedWhite:.5 alpha:.5];
     }
     return offMouseOverControlColor;
 }
@@ -78,7 +78,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *offMouseOverTextColor = nil;
     if (!offMouseOverTextColor) {
-        offMouseOverTextColor = [[NSColor colorWithCalibratedWhite:1 alpha:1] retain];
+        offMouseOverTextColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
     }
     return offMouseOverTextColor;
 }
@@ -98,7 +98,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *onControlColor = nil;
     if (!onControlColor) {
-        onControlColor = [[NSColor colorWithCalibratedWhite:.6 alpha:1] retain];
+        onControlColor = [NSColor colorWithCalibratedWhite:.6 alpha:1];
     }
     return onControlColor;
 }
@@ -108,7 +108,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *onControlUpperShadow = nil;
     if (!onControlUpperShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:.0 alpha:.5];
-        onControlUpperShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0,  1)] retain];
+        onControlUpperShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0,  1)];
     }
     return onControlUpperShadow;
 }
@@ -118,7 +118,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *onControlLowerShadow = nil;
     if (!onControlLowerShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:1 alpha:.5];
-        onControlLowerShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)] retain];
+        onControlLowerShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)];
     }
     return onControlLowerShadow;
 }
@@ -127,7 +127,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *onTextColor = nil;
     if (!onTextColor) {
-        onTextColor = [[NSColor colorWithCalibratedWhite:1 alpha:1] retain];
+        onTextColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
     }
     return onTextColor;
 }
@@ -137,7 +137,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *onTextShadow = nil;
     if (!onTextShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:.6 alpha:1];
-        onTextShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)] retain];
+        onTextShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)];
     }
     return onTextShadow;
 }
@@ -147,7 +147,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *onMouseOverControlColor = nil;
     if (!onMouseOverControlColor) {
-        onMouseOverControlColor = [[NSColor colorWithCalibratedWhite:.68 alpha:1] retain];
+        onMouseOverControlColor = [NSColor colorWithCalibratedWhite:.68 alpha:1];
     }
     return onMouseOverControlColor;
 }
@@ -157,7 +157,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *onMouseOverControlUpperShadow = nil;
     if (!onMouseOverControlUpperShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:0 alpha:.5];
-        onMouseOverControlUpperShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)] retain];
+        onMouseOverControlUpperShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)];
     }
     return onMouseOverControlUpperShadow;
 }
@@ -167,7 +167,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *onMouseOverControlLowerShadow = nil;
     if (!onMouseOverControlLowerShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:1 alpha:.5];
-        onMouseOverControlLowerShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)] retain];
+        onMouseOverControlLowerShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)];
     }
     return onMouseOverControlLowerShadow;
 }
@@ -176,7 +176,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *onMouseOverTextColor = nil;
     if (!onMouseOverTextColor) {
-        onMouseOverTextColor = [[NSColor colorWithCalibratedWhite:1 alpha:1] retain];
+        onMouseOverTextColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
     }
     return onMouseOverTextColor;
 }
@@ -196,7 +196,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *mouseDownControlColor = nil;
     if (!mouseDownControlColor) {
-        mouseDownControlColor = [[NSColor colorWithCalibratedWhite:.5 alpha:1] retain];
+        mouseDownControlColor = [NSColor colorWithCalibratedWhite:.5 alpha:1];
     }
     return mouseDownControlColor;
 }
@@ -206,7 +206,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *mouseDownControlUpperShadow = nil;
     if (!mouseDownControlUpperShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:0 alpha:.4];
-        mouseDownControlUpperShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)] retain];
+        mouseDownControlUpperShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)];
     }
     return mouseDownControlUpperShadow;
 }
@@ -216,7 +216,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *mouseDownControlLowerShadow = nil;
     if (!mouseDownControlLowerShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:.9 alpha:.5];
-        mouseDownControlLowerShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)] retain];
+        mouseDownControlLowerShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, -1)];
     }
     return mouseDownControlLowerShadow;
 }
@@ -225,7 +225,7 @@ static float am_bezierPathFlatness = 0.2;
 {
     static NSColor *mouseDownTextColor = nil;
     if (!mouseDownTextColor) {
-        mouseDownTextColor = [[NSColor colorWithCalibratedWhite:1 alpha:1] retain];
+        mouseDownTextColor = [NSColor colorWithCalibratedWhite:1 alpha:1];
     }
     return mouseDownTextColor;
 }
@@ -235,7 +235,7 @@ static float am_bezierPathFlatness = 0.2;
     static NSShadow *mouseDownTextShadow = nil;
     if (!mouseDownTextShadow) {
         NSColor *color = [NSColor colorWithCalibratedWhite:.4 alpha:1];
-        mouseDownTextShadow = [[NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)] retain];
+        mouseDownTextShadow = [NSShadow shadowWithColor:color blurRadius:1 offset:NSMakeSize(0, 1)];
     }
     return mouseDownTextShadow;
 }
@@ -268,12 +268,6 @@ static float am_bezierPathFlatness = 0.2;
     [super encodeWithCoder:coder];
 }
 
-- (void)dealloc
-{
-    [am_controlPath release];
-    [am_innerControlPath release];
-    [super dealloc];
-}
 
 
 - (NSBezierPath *)backgroundPath
@@ -287,8 +281,7 @@ static float am_bezierPathFlatness = 0.2;
     
     if (newControlPath != am_controlPath) {
         old = am_controlPath;
-        am_controlPath = [newControlPath retain];
-        [old release];
+        am_controlPath = newControlPath;
     }
 }
 
@@ -303,8 +296,7 @@ static float am_bezierPathFlatness = 0.2;
     
     if (newInnerControlPath != am_innerControlPath) {
         old = am_innerControlPath;
-        am_innerControlPath = [newInnerControlPath retain];
-        [old release];
+        am_innerControlPath = newInnerControlPath;
     }
 }
 
@@ -348,7 +340,7 @@ static float am_bezierPathFlatness = 0.2;
     am_textRect = innerRect;
     NSFont *font = self.font;
     NSDictionary *stringAttributes = @{NSFontAttributeName: font};
-    NSAttributedString *string = [[[NSAttributedString alloc] initWithString:self.title attributes:stringAttributes] autorelease];
+    NSAttributedString *string = [[NSAttributedString alloc] initWithString:self.title attributes:stringAttributes];
     NSSize textSize = [string size];
     float radius = (am_lastFrameSize.height/2.0)-am_backgroundInset;
     // calculate minimum text inset
@@ -415,14 +407,14 @@ static float am_bezierPathFlatness = 0.2;
             controlColor = [ORSButtonBarCell onControlColor];
             upperShadow = [ORSButtonBarCell onControlUpperShadow];
             lowerShadow = [ORSButtonBarCell onControlLowerShadow];
-            path = [[am_innerControlPath copy] autorelease];
+            path = [am_innerControlPath copy];
             textColor = [ORSButtonBarCell onTextColor];
             textShadow = [ORSButtonBarCell onTextShadow];
          }
         else // off
          { 
              controlColor = [ORSButtonBarCell offControlColor];
-             path = [[am_controlPath copy] autorelease];
+             path = [am_controlPath copy];
              textColor = [ORSButtonBarCell offTextColor];
              textShadow = [ORSButtonBarCell offTextShadow];
          }
@@ -436,7 +428,7 @@ static float am_bezierPathFlatness = 0.2;
               controlColor = [ORSButtonBarCell mouseDownControlColor];
               upperShadow = [ORSButtonBarCell mouseDownControlUpperShadow];
               lowerShadow = [ORSButtonBarCell mouseDownControlLowerShadow];
-              path = [[am_innerControlPath copy] autorelease];
+              path = [am_innerControlPath copy];
               textColor = [ORSButtonBarCell mouseDownTextColor];
               textShadow = [ORSButtonBarCell mouseDownTextShadow];
           } 
@@ -447,7 +439,7 @@ static float am_bezierPathFlatness = 0.2;
                   controlColor = [ORSButtonBarCell onMouseOverControlColor];
                   upperShadow = [ORSButtonBarCell onMouseOverControlUpperShadow];
                   lowerShadow = [ORSButtonBarCell onMouseOverControlLowerShadow];
-                  path = [[am_innerControlPath copy] autorelease];
+                  path = [am_innerControlPath copy];
                   textColor = [ORSButtonBarCell onMouseOverTextColor];
                   textShadow = [ORSButtonBarCell onMouseOverTextShadow];
                }
@@ -456,7 +448,7 @@ static float am_bezierPathFlatness = 0.2;
                   controlColor = [ORSButtonBarCell onControlColor];
                   upperShadow = [ORSButtonBarCell onControlUpperShadow];
                   lowerShadow = [ORSButtonBarCell onControlLowerShadow];
-                  path = [[am_innerControlPath copy] autorelease];
+                  path = [am_innerControlPath copy];
                   textColor = [ORSButtonBarCell onTextColor];
                   textShadow = [ORSButtonBarCell onTextShadow];
                }
@@ -466,14 +458,14 @@ static float am_bezierPathFlatness = 0.2;
               if (am_mouseOver || self.highlighted) 
                {
                   controlColor = [ORSButtonBarCell offMouseOverControlColor];
-                  path = [[am_controlPath copy] autorelease];
+                  path = [am_controlPath copy];
                   textColor = [ORSButtonBarCell offMouseOverTextColor];
                   textShadow = [ORSButtonBarCell offMouseOverTextShadow];
                } 
               else  
                {
                   controlColor = [ORSButtonBarCell offControlColor];
-                  path = [[am_controlPath copy] autorelease];
+                  path = [am_controlPath copy];
                   textColor = [ORSButtonBarCell offTextColor];
                   textShadow = [ORSButtonBarCell offTextShadow];
                }
@@ -528,7 +520,7 @@ static float am_bezierPathFlatness = 0.2;
     // draw button title
     NSDictionary *stringAttributes;
     NSFont *font;
-    NSMutableParagraphStyle *parapraphStyle = [[[NSMutableParagraphStyle alloc] init] autorelease];
+    NSMutableParagraphStyle *parapraphStyle = [[NSMutableParagraphStyle alloc] init];
     parapraphStyle.alignment = self.alignment;
     font = self.font;
     stringAttributes = @{NSFontAttributeName: font, NSForegroundColorAttributeName: textColor, NSParagraphStyleAttributeName: parapraphStyle};

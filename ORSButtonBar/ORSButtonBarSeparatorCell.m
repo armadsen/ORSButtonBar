@@ -68,7 +68,7 @@ static float am_backgroundInset = 1.5;
     [transformation translateXBy:cellFrame.origin.x+am_backgroundInset yBy:cellFrame.origin.y+am_backgroundInset];
     textColor = [ORSButtonBarCell offTextColor];
     textColor = [textColor disabledColor];
-    path = [[am_controlPath copy] autorelease];
+    path = [am_controlPath copy];
     
     [NSGraphicsContext saveGraphicsState];
     [path transformUsingAffineTransform:transformation];

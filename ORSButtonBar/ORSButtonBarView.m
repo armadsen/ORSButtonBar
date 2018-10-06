@@ -29,7 +29,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 
 + (NSShadow *)ORSButtonBarSelectedItemShadow
 {
-    NSShadow *result = [[[NSShadow alloc] init] autorelease];
+    NSShadow *result = [[NSShadow alloc] init];
     result.shadowOffset = NSMakeSize(0.0, 1.0);
     result.shadowBlurRadius = 1.0;
     result.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.7];
@@ -92,13 +92,13 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 
 - (void)am_commonInit
 {
-    [self setItems:[[[NSMutableArray alloc] init] autorelease]];
+    [self setItems:[[NSMutableArray alloc] init]];
     [self setBackgroundGradient:[NSGradient grayButtonBarGradient]];
     //[self setBackgroundGradient:[CTGradient blueButtonBarGradient]];
     [self setBaselineSeparatorColor:[NSColor grayColor]];
     [self setShowsBaselineSeparator:YES];
-    [self setButtonCell:[[[ORSButtonBarCell alloc] init] autorelease]];
-    [self setSeparatorCell:[[[ORSButtonBarSeparatorCell alloc] init] autorelease]];
+    [self setButtonCell:[[ORSButtonBarCell alloc] init]];
+    [self setSeparatorCell:[[ORSButtonBarSeparatorCell alloc] init]];
     [self configureButtonCell];
 }
 
@@ -115,17 +115,6 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 }
 
 
-- (void)dealloc
-{
-    [backgroundGradient release];
-    [baselineSeparatorColor release];
-    [items release];
-    [buttonCell release];
-    [separatorCell release];
-    
-    [focusedItem release];
-    [super dealloc];
-}
 
 
 //====================================================================
@@ -165,8 +154,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 {
     if (backgroundGradient != value) {
         id old = backgroundGradient;
-        backgroundGradient = [value retain];
-        [old release];
+        backgroundGradient = value;
     }
 }
 
@@ -179,8 +167,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 {
     if (baselineSeparatorColor != value) {
         id old = baselineSeparatorColor;
-        baselineSeparatorColor = [value retain];
-        [old release];
+        baselineSeparatorColor = value;
     }
 }
 
@@ -198,7 +185,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 
 - (NSArray *)items
 {
-    return [[items retain] autorelease];
+    return items;
 }
 
 - (void)setItems:(NSMutableArray *)newItems
@@ -208,8 +195,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
         [self removeTrackingRects];
         [self removeToolTips];
         id old = items;
-        items = [newItems retain];
-        [old release];
+        items = newItems;
     }
 }
 
@@ -241,7 +227,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
             [result addObject: item];
          }
      }
-    return [[result copy] autorelease];    
+    return [result copy];    
 }
 
 - (NSString *)selectedItemIdentifier
@@ -261,7 +247,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
         [result addObject: [eachItem itemIdentifier]];
      }
     
-    return [[result copy] autorelease];
+    return [result copy];
 }
 
 - (ORSButtonBarCell *)buttonCell
@@ -273,8 +259,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 {
     if (buttonCell != value) {
         id old = buttonCell;
-        buttonCell = [value retain];
-        [old release];
+        buttonCell = value;
     }
 }
 
@@ -287,8 +272,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 {
     if (separatorCell != value) {
         id old = separatorCell;
-        separatorCell = [value retain];
-        [old release];
+        separatorCell = value;
     }
 }
 
@@ -323,8 +307,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 {
     if (focusedItem != value) 
      {
-        [focusedItem release];
-        focusedItem = [value retain];
+        focusedItem = value;
         
         NSAccessibilityPostNotification(focusedItem, NSAccessibilityFocusedUIElementChangedNotification);
      }
@@ -983,7 +966,6 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
      {
         attributes = [super accessibilityAttributeNames];
         attributes = [attributes arrayByAddingObject: NSAccessibilitySelectedChildrenAttribute];
-        [attributes retain];
      }
     
     return attributes;

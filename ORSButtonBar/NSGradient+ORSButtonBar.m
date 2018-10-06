@@ -19,7 +19,7 @@
     NSColor *color2 = [NSColor colorWithCalibratedRed:0.75 green:0.75 blue:0.95 alpha:1.00];
     result = [[NSGradient alloc] initWithColors:@[color1, color2]];
     
-    return [result autorelease];
+    return result;
 }
 
 + (id)grayButtonBarGradient;
@@ -30,7 +30,7 @@
     NSColor *color2 = [NSColor colorWithCalibratedRed:0.95 green:0.95 blue:0.95 alpha:1.00];
     result = [[NSGradient alloc] initWithColors:@[color1, color2]];
     
-    return [result autorelease];
+    return result;
 }
 
 + (id)lightButtonBarGradient
@@ -41,7 +41,7 @@
     NSColor *color2 = [NSColor colorWithCalibratedRed:0.95 green:0.95 blue:0.95 alpha:1.00];
     result = [[NSGradient alloc] initWithColors:@[color1, color2]];
     
-    return [result autorelease];
+    return result;
 }
 
 + (id)unifiedDarkGradient
@@ -52,7 +52,7 @@
     NSColor *color2 = [NSColor colorWithCalibratedRed:0.83 green:0.83 blue:0.83 alpha:1.00];
     result = [[NSGradient alloc] initWithColors:@[color1, color2]];
     
-    return [result autorelease];
+    return result;
 }
 
 
