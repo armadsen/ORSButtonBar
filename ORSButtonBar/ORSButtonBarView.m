@@ -602,7 +602,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 	}
 	origin.x = AM_START_GAP_WIDTH;
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	id item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) {
 		[self calculateFrameSizeForItem:item];
 		[item setFrameOrigin:origin];
@@ -619,7 +619,7 @@ NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelec
 		 }
 		//		NSLog(@"setTrackingRect:");
 		if (![item isSeparatorItem]) {
-			[item setTrackingRectTag:[self addTrackingRect:[item frame] owner:self userData:item assumeInside:NO]];  //... should check for mouse inside
+			[item setTrackingRectTag:[self addTrackingRect:[item frame] owner:self userData:(void *)item assumeInside:NO]];  //... should check for mouse inside
 			[item setTooltipTag: [self addToolTipRect: [item frame] owner: item userData: NULL]];
 		}
 		
