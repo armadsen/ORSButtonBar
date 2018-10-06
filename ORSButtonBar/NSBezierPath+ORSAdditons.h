@@ -1,5 +1,5 @@
 //
-//  NSBezierPath_AMAdditons.h
+//  NSBezierPath+ORSAdditons.h
 //  PlateControl
 //
 //  Created by Andreas on Sun Jan 18 2004.
@@ -18,7 +18,7 @@ typedef enum {
 	AMTriangleRight
 } AMTriangleOrientation;
 
-@interface NSBezierPath (AMAdditons)
+@interface NSBezierPath (ORSAdditons)
 
 /*	Right and left sides are semicircles, with no straight part
  

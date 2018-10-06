@@ -1,12 +1,12 @@
 //
-//  NSColor_AMAdditions.m
+//  NSColor+ORSAdditions.m
 //  PlateControl
 //
 //  Created by Andreas on Sat Jan 17 2004.
 //  Copyright (c) 2004 Andreas Mayer. All rights reserved.
 //
 
-#import "NSColor_AMAdditions.h"
+#import "NSColor+ORSAdditions.h"
 
 @interface NSColor (AMAdditions_AppKitPrivate)
 + (NSColor *)toolTipColor;
@@ -14,7 +14,7 @@
 @end
 
 
-@implementation NSColor (AMAdditions)
+@implementation NSColor (ORSAdditions)
 
 + (NSColor *)lightYellowColor
 {

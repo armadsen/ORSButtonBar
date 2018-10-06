@@ -1,15 +1,15 @@
 //
-//  AMButtonBarItem.m
-//  ButtonBarTest
+//  ORSButtonBarItem.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 09.02.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
 //
 
-#import "AMButtonBarItem.h"
-#import "AMButtonBar.h"
+#import "ORSButtonBarItem.h"
+#import "ORSButtonBarView.h"
 
-@implementation AMButtonBarItem
+@implementation ORSButtonBarItem
 
 - (id)initWithIdentifier:(NSString *)theIdentifier;
 {
@@ -301,12 +301,12 @@
 	frame.origin = origin;
 }
 
-- (AMButtonBar *)parentButtonBar 
+- (ORSButtonBarView *)parentButtonBar 
 {
     return parentButtonBar;
 }
 
-- (void)setParentButtonBar:(AMButtonBar *)value 
+- (void)setParentButtonBar:(ORSButtonBarView *)value 
 {
 	parentButtonBar = value;
 }

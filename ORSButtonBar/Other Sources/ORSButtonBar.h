@@ -16,8 +16,7 @@ FOUNDATION_EXPORT const unsigned char ORSButtonBarVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <ORSButtonBar/PublicHeader.h>
 
-#import <ORSButtonBar/AMButtonBar.h>
-#import <ORSButtonBar/AMButtonBarCell.h>
-#import <ORSButtonBar/AMButtonBarItem.h>
-#import <ORSButtonBar/AMButtonBarSeparatorCell.h>
-#import <ORSButtonBar/NSGradient_AMButtonBar.h>
+#import <ORSButtonBar/ORSButtonBar.h>
+#import <ORSButtonBar/ORSButtonBarCell.h>
+#import <ORSButtonBar/ORSButtonBarItem.h>
+#import <ORSButtonBar/NSGradient_ORSButtonBar.h>

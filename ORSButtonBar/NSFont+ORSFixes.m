@@ -1,15 +1,15 @@
 //
-//  NSFont_AMFixes.m
-//  ButtonBarTest
+//  NSFont+ORSFixes.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 10.02.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
 //
 
-#import "NSFont_AMFixes.h"
+#import "NSFont+ORSFixes.h"
 
 
-@implementation NSFont (AMFixes)
+@implementation NSFont (ORSFixes)
 
 - (float)fixed_xHeight
 {

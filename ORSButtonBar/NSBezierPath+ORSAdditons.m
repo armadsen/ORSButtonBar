@@ -1,5 +1,5 @@
 //
-//  NSBezierPath_AMAdditons.m
+//  NSBezierPath+ORSAdditons.m
 //  PlateControl
 //
 //  Created by Andreas on Sun Jan 18 2004.
@@ -9,10 +9,10 @@
 //	- added -appendBezierPathWithTriangleInRect:orientation: and +bezierPathWithTriangleInRect:orientation:
 
 
-#import "NSBezierPath_AMAdditons.h"
+#import "NSBezierPath+ORSAdditons.h"
 
 
-@implementation NSBezierPath (AMAdditons)
+@implementation NSBezierPath (ORSAdditons)
 
 + (NSBezierPath *)bezierPathWithPlateInRect:(NSRect)rect
 {

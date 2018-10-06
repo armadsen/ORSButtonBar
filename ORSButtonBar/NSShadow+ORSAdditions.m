@@ -1,15 +1,15 @@
 //
-//  NSShadow_AMAdditions.m
-//  ButtonBarTest
+//  NSShadow+ORSAdditions.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 10.02.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
 //
 
-#import "NSShadow_AMAdditions.h"
+#import "NSShadow+ORSAdditions.h"
 
 
-@implementation NSShadow (AMAdditions)
+@implementation NSShadow (ORSAdditions)
 
 + (NSShadow *)shadowWithColor:(NSColor *)color blurRadius:(float)radius offset:(NSSize)offset
 {

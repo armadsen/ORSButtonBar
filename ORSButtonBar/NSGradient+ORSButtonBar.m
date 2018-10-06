@@ -1,14 +1,14 @@
 //
-//  NSGradient_AMButtonBar.m
-//  ButtonBarTest
+//  NSGradient+ORSButtonBar.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 18.02.10.
 //  Copyright 2010 Andreas Mayer. All rights reserved.
 //
 
-#import "NSGradient_AMButtonBar.h"
+#import "NSGradient+ORSButtonBar.h"
 
-@implementation NSGradient (AMButtonBar)
+@implementation NSGradient (ORSButtonBar)
 
 
 + (id)blueButtonBarGradient

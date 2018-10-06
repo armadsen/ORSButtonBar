@@ -1,6 +1,6 @@
 //
-//  AMButtonBarCell.m
-//  AMButtonBar
+//  ORSButtonBarCell.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 2007-02-10
 //  Copyright (c) 2004 Andreas Mayer. All rights reserved.
@@ -13,12 +13,12 @@
 //  - removed deprecated invocations of -setCachesBezierPath:
 
 
-#import "AMButtonBarCell.h"
-#import "NSBezierPath_AMAdditons.h"
-#import "NSGradient_AMButtonBar.h"
-#import "NSColor_AMAdditions.h"
-#import "NSFont_AMFixes.h"
-#import "NSShadow_AMAdditions.h"
+#import "ORSButtonBarCell.h"
+#import "NSBezierPath+ORSAdditons.h"
+#import "NSGradient+ORSButtonBar.h"
+#import "NSColor+ORSAdditions.h"
+#import "NSFont+ORSFixes.h"
+#import "NSShadow+ORSAdditions.h"
 #import <math.h>
 
 static float am_backgroundInset = 1.5;
@@ -26,7 +26,7 @@ static float am_textGap = 1.5;
 static float am_bezierPathFlatness = 0.2;
 
 
-@interface AMButtonBarCell (Private)
+@interface ORSButtonBarCell (Private)
 - (NSSize)lastFrameSize;
 - (void)setLastFrameSize:(NSSize)newLastFrameSize;
 - (float)calculateTextInsetForRadius:(float)radius font:(NSFont *)font;
@@ -34,7 +34,7 @@ static float am_bezierPathFlatness = 0.2;
 @end
 
 
-@implementation AMButtonBarCell
+@implementation ORSButtonBarCell
 
 + (NSColor *)offControlColor
 {
@@ -412,19 +412,19 @@ static float am_bezierPathFlatness = 0.2;
 	 {
 		if ([self state] == NSOnState) // on 
 		 {
-			controlColor = [AMButtonBarCell onControlColor];
-			upperShadow = [AMButtonBarCell onControlUpperShadow];
-			lowerShadow = [AMButtonBarCell onControlLowerShadow];
+			controlColor = [ORSButtonBarCell onControlColor];
+			upperShadow = [ORSButtonBarCell onControlUpperShadow];
+			lowerShadow = [ORSButtonBarCell onControlLowerShadow];
 			path = [[am_innerControlPath copy] autorelease];
-			textColor = [AMButtonBarCell onTextColor];
-			textShadow = [AMButtonBarCell onTextShadow];
+			textColor = [ORSButtonBarCell onTextColor];
+			textShadow = [ORSButtonBarCell onTextShadow];
 		 }
 		else // off
 		 { 
-			 controlColor = [AMButtonBarCell offControlColor];
+			 controlColor = [ORSButtonBarCell offControlColor];
 			 path = [[am_controlPath copy] autorelease];
-			 textColor = [AMButtonBarCell offTextColor];
-			 textShadow = [AMButtonBarCell offTextShadow];
+			 textColor = [ORSButtonBarCell offTextColor];
+			 textShadow = [ORSButtonBarCell offTextShadow];
 		 }
 		controlColor = [controlColor disabledColor];
 		textColor = [textColor disabledColor];
@@ -433,49 +433,49 @@ static float am_bezierPathFlatness = 0.2;
 	 { // enabled
 		 if ([self isHighlighted]) // mouse down
 		  { 
-			  controlColor = [AMButtonBarCell mouseDownControlColor];
-			  upperShadow = [AMButtonBarCell mouseDownControlUpperShadow];
-			  lowerShadow = [AMButtonBarCell mouseDownControlLowerShadow];
+			  controlColor = [ORSButtonBarCell mouseDownControlColor];
+			  upperShadow = [ORSButtonBarCell mouseDownControlUpperShadow];
+			  lowerShadow = [ORSButtonBarCell mouseDownControlLowerShadow];
 			  path = [[am_innerControlPath copy] autorelease];
-			  textColor = [AMButtonBarCell mouseDownTextColor];
-			  textShadow = [AMButtonBarCell mouseDownTextShadow];
+			  textColor = [ORSButtonBarCell mouseDownTextColor];
+			  textShadow = [ORSButtonBarCell mouseDownTextShadow];
 		  } 
 		 else if ([self state] == NSOnState) // on
 		  { 
 			  if (am_mouseOver || [self isHighlighted]) 
 			   {
-				  controlColor = [AMButtonBarCell onMouseOverControlColor];
-				  upperShadow = [AMButtonBarCell onMouseOverControlUpperShadow];
-				  lowerShadow = [AMButtonBarCell onMouseOverControlLowerShadow];
+				  controlColor = [ORSButtonBarCell onMouseOverControlColor];
+				  upperShadow = [ORSButtonBarCell onMouseOverControlUpperShadow];
+				  lowerShadow = [ORSButtonBarCell onMouseOverControlLowerShadow];
 				  path = [[am_innerControlPath copy] autorelease];
-				  textColor = [AMButtonBarCell onMouseOverTextColor];
-				  textShadow = [AMButtonBarCell onMouseOverTextShadow];
+				  textColor = [ORSButtonBarCell onMouseOverTextColor];
+				  textShadow = [ORSButtonBarCell onMouseOverTextShadow];
 			   }
 			  else 
 			   {
-				  controlColor = [AMButtonBarCell onControlColor];
-				  upperShadow = [AMButtonBarCell onControlUpperShadow];
-				  lowerShadow = [AMButtonBarCell onControlLowerShadow];
+				  controlColor = [ORSButtonBarCell onControlColor];
+				  upperShadow = [ORSButtonBarCell onControlUpperShadow];
+				  lowerShadow = [ORSButtonBarCell onControlLowerShadow];
 				  path = [[am_innerControlPath copy] autorelease];
-				  textColor = [AMButtonBarCell onTextColor];
-				  textShadow = [AMButtonBarCell onTextShadow];
+				  textColor = [ORSButtonBarCell onTextColor];
+				  textShadow = [ORSButtonBarCell onTextShadow];
 			   }
 		  }
 		 else // off
 		  { 
 			  if (am_mouseOver || [self isHighlighted]) 
 			   {
-				  controlColor = [AMButtonBarCell offMouseOverControlColor];
+				  controlColor = [ORSButtonBarCell offMouseOverControlColor];
 				  path = [[am_controlPath copy] autorelease];
-				  textColor = [AMButtonBarCell offMouseOverTextColor];
-				  textShadow = [AMButtonBarCell offMouseOverTextShadow];
+				  textColor = [ORSButtonBarCell offMouseOverTextColor];
+				  textShadow = [ORSButtonBarCell offMouseOverTextShadow];
 			   } 
 			  else  
 			   {
-				  controlColor = [AMButtonBarCell offControlColor];
+				  controlColor = [ORSButtonBarCell offControlColor];
 				  path = [[am_controlPath copy] autorelease];
-				  textColor = [AMButtonBarCell offTextColor];
-				  textShadow = [AMButtonBarCell offTextShadow];
+				  textColor = [ORSButtonBarCell offTextColor];
+				  textShadow = [ORSButtonBarCell offTextShadow];
 			   }
 		  }
 	 }

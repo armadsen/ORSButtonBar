@@ -1,6 +1,6 @@
 //
-//  AMButtonBarCell.h
-//  AMButtonBar
+//  ORSButtonBarCell.h
+//  ORSButtonBar
 //
 //  Created by Andreas on Sat 2007-02-10
 //  Copyright (c) 2004 Andreas Mayer. All rights reserved.
@@ -20,7 +20,7 @@
 
 #import <AppKit/AppKit.h>
 
-@interface AMButtonBarCell : NSButtonCell {
+@interface ORSButtonBarCell : NSButtonCell {
 	BOOL am_mouseOver;
 	BOOL am_mouseDown;
 	// private: basic layout and geometry data

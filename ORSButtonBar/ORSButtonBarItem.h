@@ -1,6 +1,6 @@
 //
-//  AMButtonBarItem.h
-//  ButtonBarTest
+//  ORSButtonBarItem.h
+//  ORSButtonBar
 //
 //  Created by Andreas on 09.02.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
@@ -11,9 +11,9 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class AMButtonBar;
+@class ORSButtonBarView;
 
-@interface AMButtonBarItem : NSObject <NSCoding> {
+@interface ORSButtonBarItem : NSObject <NSCoding> {
 	id target;
 	SEL action;
 	BOOL enabled;
@@ -32,7 +32,7 @@
 	NSTrackingRectTag trackingRectTag;
 	NSToolTipTag tooltipTag;
 	
-	AMButtonBar *parentButtonBar;
+	ORSButtonBarView *parentButtonBar;
 }
 
 - (id)initWithIdentifier:(NSString *)identifier;
@@ -90,7 +90,7 @@
 
 - (void)setFrameOrigin:(NSPoint)origin;
 
-- (AMButtonBar *)parentButtonBar;
-- (void)setParentButtonBar:(AMButtonBar *)value;
+- (ORSButtonBarView *)parentButtonBar;
+- (void)setParentButtonBar:(ORSButtonBarView *)value;
 
 @end

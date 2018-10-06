@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface NSColor (AMAdditions)
+@interface NSColor (ORSAdditions)
 
 + (NSColor *)lightYellowColor;
 

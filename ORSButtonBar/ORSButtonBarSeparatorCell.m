@@ -1,6 +1,6 @@
 //
-//  AMButtonBarSeparatorCell.m
-//  ButtonBarTest
+//  ORSButtonBarSeparatorCell.m
+//  ORSButtonBar
 //
 //  Created by Andreas on 29.06.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
@@ -9,13 +9,13 @@
 //  - removed deprecated invocations of -setCachesBezierPath:
 
 
-#import "AMButtonBarSeparatorCell.h"
-#import "NSColor_AMAdditions.h"
+#import "ORSButtonBarSeparatorCell.h"
+#import "NSColor+ORSAdditions.h"
 
 
 static float am_backgroundInset = 1.5;
 
-@interface AMButtonBarCell (Private)
+@interface ORSButtonBarCell (Private)
 - (NSSize)lastFrameSize;
 - (void)setLastFrameSize:(NSSize)newLastFrameSize;
 - (void)setControlPath:(NSBezierPath *)newControlPath;
@@ -23,7 +23,7 @@ static float am_backgroundInset = 1.5;
 @end
 
 
-@implementation AMButtonBarSeparatorCell
+@implementation ORSButtonBarSeparatorCell
 
 - (BOOL)mouseOver
 {
@@ -66,7 +66,7 @@ static float am_backgroundInset = 1.5;
 	NSColor *textColor;
 	NSAffineTransform *transformation = [NSAffineTransform transform];
 	[transformation translateXBy:cellFrame.origin.x+am_backgroundInset yBy:cellFrame.origin.y+am_backgroundInset];
-	textColor = [AMButtonBarCell offTextColor];
+	textColor = [ORSButtonBarCell offTextColor];
 	textColor = [textColor disabledColor];
 	path = [[am_controlPath copy] autorelease];
 	

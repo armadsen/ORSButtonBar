@@ -1,6 +1,6 @@
 //
-//  AMButtonBar.h
-//  ButtonBarTest
+//  ORSButtonBarView.h
+//  ORSButtonBar
 //
 //  Created by Andreas on 09.02.07.
 //  Copyright 2007 Andreas Mayer. All rights reserved.
@@ -10,20 +10,19 @@
 
 
 #import <Cocoa/Cocoa.h>
-#import "AMButtonBarItem.h"
-#import "AMButtonBarCell.h"
-#import "AMButtonBarSeparatorCell.h"
+#import "ORSButtonBarItem.h"
+#import "ORSButtonBarCell.h"
+#import "ORSButtonBarSeparatorCell.h"
+
+extern NSString *const ORSButtonBarSelectionDidChangeNotification;
 
 
-extern NSString *const AMButtonBarSelectionDidChangeNotification;
-
-
-@interface NSObject (AMButtonBarDelegate)
+@interface NSObject (ORSButtonBarDelegate)
 - (void)buttonBarSelectionDidChange:(NSNotification *)aNotification;
 @end
 
 
-@interface AMButtonBar : NSView 
+@interface ORSButtonBarView : NSView 
 {
 	id delegate;
 	BOOL delegateRespondsToSelectionDidChange;
@@ -32,34 +31,34 @@ extern NSString *const AMButtonBarSelectionDidChangeNotification;
 	BOOL showsBaselineSeparator;
 	BOOL allowsMultipleSelection;
 	NSMutableArray *items;
-	AMButtonBarCell *buttonCell;
-	AMButtonBarSeparatorCell *separatorCell;
+	ORSButtonBarCell *buttonCell;
+	ORSButtonBarSeparatorCell *separatorCell;
 	BOOL needsLayout;
 	
-	AMButtonBarItem *focusedItem;
+	ORSButtonBarItem *focusedItem;
 }
 
 
 - (id)initWithFrame:(NSRect)frame;
 
-- (AMButtonBarCell *)buttonCell;
-- (AMButtonBarSeparatorCell *)separatorCell;
+- (ORSButtonBarCell *)buttonCell;
+- (ORSButtonBarSeparatorCell *)separatorCell;
 
 - (NSArray *)items;
 
--(AMButtonBarItem *) selectedItem;
+-(ORSButtonBarItem *) selectedItem;
 -(NSArray *) selectedItems;
 
 - (NSString *)selectedItemIdentifier;
 - (NSArray *)selectedItemIdentifiers;
 
-- (AMButtonBarItem *)itemAtIndex:(int)index;
-- (AMButtonBarItem *)itemWithIdentifier:(NSString *) identifier;
-- (NSInteger)indexOfItem: (AMButtonBarItem *) item;
+- (ORSButtonBarItem *)itemAtIndex:(int)index;
+- (ORSButtonBarItem *)itemWithIdentifier:(NSString *) identifier;
+- (NSInteger)indexOfItem: (ORSButtonBarItem *) item;
 
-- (void)insertItem:(AMButtonBarItem *)item atIndex:(NSUInteger)index;
+- (void)insertItem:(ORSButtonBarItem *)item atIndex:(NSUInteger)index;
 
-- (void)removeItem:(AMButtonBarItem *)item;
+- (void)removeItem:(ORSButtonBarItem *)item;
 - (void)removeItemAtIndex:(NSUInteger)index;
 - (void)removeAllItems;
 
@@ -89,7 +88,7 @@ extern NSString *const AMButtonBarSelectionDidChangeNotification;
 - (BOOL)needsLayout;
 - (void)setNeedsLayout:(BOOL)value;
 
-- (AMButtonBarItem *)focusedItem;
-- (void)setFocusedItem:(AMButtonBarItem *)value;
+- (ORSButtonBarItem *)focusedItem;
+- (void)setFocusedItem:(ORSButtonBarItem *)value;
 
 @end

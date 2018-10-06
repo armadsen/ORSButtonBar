@@ -1,6 +1,6 @@
 //
-//	AMButtonBar.m
-//	ButtonBarTest
+//	ORSButtonBar.m
+//  ORSButtonBar
 //
 //	Created by Andreas on 09.02.07.
 //	Copyright 2007 Andreas Mayer. All rights reserved.
@@ -9,25 +9,24 @@
 //  - use NSGradient instead of CTGradient for 10.5 and above
 
 
-#import "AMButtonBar.h"
-#import "AMButtonBarItem.h"
-#import "AMButtonBarCell.h"
-#import "AMButtonBarSeparatorCell.h"
-#import "NSGradient_AMButtonBar.h"
+#import "ORSButtonBarView.h"
+#import "ORSButtonBarItem.h"
+#import "ORSButtonBarCell.h"
+#import "NSGradient+ORSButtonBar.h"
 
 float const AM_START_GAP_WIDTH = 8.0;
 float const AM_BUTTON_GAP_WIDTH = 2.0;
 float const AM_BUTTON_HEIGHT = 20.0;
 
-NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelectionDidChangeNotification";
+NSString *const ORSButtonBarSelectionDidChangeNotification = @"ORSButtonBarSelectionDidChangeNotification";
 
-@interface NSShadow (AMButtonBar)
-+ (NSShadow *)amButtonBarSelectedItemShadow;
+@interface NSShadow (ORSAdditions)
++ (NSShadow *)ORSButtonBarSelectedItemShadow;
 @end
 
-@implementation NSShadow (AMButtonBar)
+@implementation NSShadow (ORSAdditions)
 
-+ (NSShadow *)amButtonBarSelectedItemShadow
++ (NSShadow *)ORSButtonBarSelectedItemShadow
 {
 	NSShadow *result = [[[NSShadow alloc] init] autorelease];
 	[result setShadowOffset:NSMakeSize(0.0, 1.0)];
@@ -39,31 +38,31 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 @end
 
 
-@interface AMButtonBar (Private)
+@interface ORSButtonBarView (Private)
 - (void)am_commonInit;
 - (void)setItems:(NSMutableArray *)newItems;
 - (BOOL)delegateRespondsToSelectionDidChange;
 - (void)setDelegateRespondsToSelectionDidChange:(BOOL)value;
-- (void)setButtonCell:(AMButtonBarCell *)value;
-- (void)setSeparatorCell:(AMButtonBarSeparatorCell *)value;
+- (void)setButtonCell:(ORSButtonBarCell *)value;
+- (void)setSeparatorCell:(ORSButtonBarSeparatorCell *)value;
 - (void)configureButtonCell;
-- (AMButtonBarItem *)itemAtPoint:(NSPoint)point;
+- (ORSButtonBarItem *)itemAtPoint:(NSPoint)point;
 - (NSRect)frameForItemAtIndex:(int)index;
 - (void)drawItemAtIndex:(int)index;
-- (void)drawItem:(AMButtonBarItem *)item;
+- (void)drawItem:(ORSButtonBarItem *)item;
 - (void)layoutItems;
 - (void)removeTrackingRects;
 - (void)removeToolTips;
-- (void)calculateFrameSizeForItem:(AMButtonBarItem *)item;
-- (void)prepareCellWithItem:(AMButtonBarItem *)item;
-- (NSCell *)cellForItem:(AMButtonBarItem *)item;
+- (void)calculateFrameSizeForItem:(ORSButtonBarItem *)item;
+- (void)prepareCellWithItem:(ORSButtonBarItem *)item;
+- (NSCell *)cellForItem:(ORSButtonBarItem *)item;
 - (void)handleMouseDownForPointInWindow:(NSValue *)value;
-- (void)didClickItem:(AMButtonBarItem *)item;
-- (void)sendActionForItem:(AMButtonBarItem *)item;
+- (void)didClickItem:(ORSButtonBarItem *)item;
+- (void)sendActionForItem:(ORSButtonBarItem *)item;
 @end
 
 
-@implementation AMButtonBar
+@implementation ORSButtonBarView
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -97,8 +96,8 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	//[self setBackgroundGradient:[CTGradient blueButtonBarGradient]];
 	[self setBaselineSeparatorColor:[NSColor grayColor]];
 	[self setShowsBaselineSeparator:YES];
-	[self setButtonCell:[[[AMButtonBarCell alloc] init] autorelease]];
-	[self setSeparatorCell:[[[AMButtonBarSeparatorCell alloc] init] autorelease]];
+	[self setButtonCell:[[[ORSButtonBarCell alloc] init] autorelease]];
+	[self setSeparatorCell:[[[ORSButtonBarSeparatorCell alloc] init] autorelease]];
 	[self configureButtonCell];
 }
 
@@ -213,11 +212,11 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
--(AMButtonBarItem *) selectedItem;
+-(ORSButtonBarItem *) selectedItem;
 {
-	AMButtonBarItem *result = nil;
+	ORSButtonBarItem *result = nil;
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) 
 	 {
 		if ([item state] == NSOnState) 
@@ -233,7 +232,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 {
 	NSMutableArray *result = [NSMutableArray array];
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) 
 	 {
 		if ([item state] == NSOnState) 
@@ -254,7 +253,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSArray *selItems = [self selectedItems];
 	NSMutableArray *result = [NSMutableArray arrayWithCapacity: [selItems count]];
 	NSEnumerator *itemsEnumerator = [selItems objectEnumerator];
-	AMButtonBarItem *eachItem=nil;
+	ORSButtonBarItem *eachItem=nil;
 	
 	while ((eachItem = [itemsEnumerator nextObject]))
 	 {
@@ -264,12 +263,12 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	return [[result copy] autorelease];
 }
 
-- (AMButtonBarCell *)buttonCell
+- (ORSButtonBarCell *)buttonCell
 {
 	return buttonCell;
 }
 
-- (void)setButtonCell:(AMButtonBarCell *)value
+- (void)setButtonCell:(ORSButtonBarCell *)value
 {
 	if (buttonCell != value) {
 		id old = buttonCell;
@@ -278,12 +277,12 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
-- (AMButtonBarSeparatorCell *)separatorCell
+- (ORSButtonBarSeparatorCell *)separatorCell
 {
 	return separatorCell;
 }
 
-- (void)setSeparatorCell:(AMButtonBarSeparatorCell *)value
+- (void)setSeparatorCell:(ORSButtonBarSeparatorCell *)value
 {
 	if (separatorCell != value) {
 		id old = separatorCell;
@@ -314,12 +313,12 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
-- (AMButtonBarItem *)focusedItem 
+- (ORSButtonBarItem *)focusedItem 
 {
     return focusedItem;
 }
 
-- (void)setFocusedItem:(AMButtonBarItem *)value 
+- (void)setFocusedItem:(ORSButtonBarItem *)value 
 {
     if (focusedItem != value) 
 	 {
@@ -335,15 +334,15 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 #pragma mark 		public methods
 //====================================================================
 
-- (AMButtonBarItem *)itemAtIndex:(int)index
+- (ORSButtonBarItem *)itemAtIndex:(int)index
 {
 	return [(NSMutableArray *)[self items] objectAtIndex:index];
 }
 
-- (AMButtonBarItem *)itemWithIdentifier:(NSString *) identifier;
+- (ORSButtonBarItem *)itemWithIdentifier:(NSString *) identifier;
 {
 	NSEnumerator *itemsEnumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *eachItem=nil;
+	ORSButtonBarItem *eachItem=nil;
 	
 	while ((eachItem = [itemsEnumerator nextObject]))
 	 {
@@ -356,14 +355,14 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	return nil;
 }
 
-- (NSInteger)indexOfItem: (AMButtonBarItem *) item;
+- (NSInteger)indexOfItem: (ORSButtonBarItem *) item;
 {
 	NSArray *allItems = [self items];
 	
 	NSUInteger i, count = [allItems count];
 	for (i = 0; i < count; i++)
 	 {
-		AMButtonBarItem *eachItem = [allItems objectAtIndex:i];
+		ORSButtonBarItem *eachItem = [allItems objectAtIndex:i];
 		if ([eachItem isEqual: item])
 		 {
 			return i;
@@ -373,14 +372,14 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	return NSNotFound;
 }
 
-- (void)insertItem:(AMButtonBarItem *)item atIndex:(NSUInteger)index
+- (void)insertItem:(ORSButtonBarItem *)item atIndex:(NSUInteger)index
 {
 	[(NSMutableArray *)[self items] insertObject:item atIndex:index];
 	[item setParentButtonBar: self];
 	[self setNeedsLayout:YES];
 }
 
-- (void)removeItem:(AMButtonBarItem *)item
+- (void)removeItem:(ORSButtonBarItem *)item
 {
 	if (item == nil) return;
 	
@@ -413,7 +412,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 - (void)selectItemWithIdentifier:(NSString *)identifier
 {
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) {
 		if ([[item itemIdentifier] isEqualToString:identifier]) {
 			[self didClickItem:item];
@@ -426,7 +425,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 {
 	if ([self allowsMultipleSelection] || ([identifierList count] < 2)) {
 		NSEnumerator *enumerator = [[self items] objectEnumerator];
-		AMButtonBarItem *item;
+		ORSButtonBarItem *item;
 		while ((item = [enumerator nextObject])) {
 			if ([identifierList containsObject:[item itemIdentifier]]) {
 				[self didClickItem:item];
@@ -448,7 +447,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSUInteger i, count = [myItems count];
 	for (i=indexOfCurrentFocus+1; i < count; i++)
 	 {
-		AMButtonBarItem *eachItem = [myItems objectAtIndex:i];
+		ORSButtonBarItem *eachItem = [myItems objectAtIndex:i];
 		if (![eachItem isSeparatorItem])
 		 {
 			[self setFocusedItem: eachItem];
@@ -479,7 +478,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSInteger i;
 	for (i=indexOfCurrentFocus-1; i >= 0; i--)
 	 {
-		AMButtonBarItem *eachItem = [myItems objectAtIndex:i];
+		ORSButtonBarItem *eachItem = [myItems objectAtIndex:i];
 		if (![eachItem isSeparatorItem])
 		 {
 			[self setFocusedItem: eachItem];
@@ -500,7 +499,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSUInteger i, count = [myItems count];
 	for (i = 0; i < count; i++)
 	 {
-		AMButtonBarItem *eachItem = [myItems objectAtIndex:i];
+		ORSButtonBarItem *eachItem = [myItems objectAtIndex:i];
 		if (![eachItem isSeparatorItem])
 		 {
 			[self setFocusedItem: eachItem];
@@ -521,7 +520,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSUInteger i, count = [myItems count];
 	for (i = count-1; i > 0; i--)
 	 {
-		AMButtonBarItem *eachItem = [myItems objectAtIndex:i];
+		ORSButtonBarItem *eachItem = [myItems objectAtIndex:i];
 		if (![eachItem isSeparatorItem])
 		 {
 			[self setFocusedItem: eachItem];
@@ -548,17 +547,17 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 
 - (void)configureButtonCell
 {
-	AMButtonBarCell *cell = [self buttonCell];
+	ORSButtonBarCell *cell = [self buttonCell];
 	[cell setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
 	cell = [self separatorCell];
 	[cell setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
 }
 
-- (AMButtonBarItem *)itemAtPoint:(NSPoint)point;
+- (ORSButtonBarItem *)itemAtPoint:(NSPoint)point;
 {
-	AMButtonBarItem *result = nil;
+	ORSButtonBarItem *result = nil;
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) {
 		if (![item isSeparatorItem]) {
 			NSRect frame = [item frame];
@@ -584,7 +583,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	[self drawItem:[self itemAtIndex:index]];
 }
 
-- (void)drawItem:(AMButtonBarItem *)item
+- (void)drawItem:(ORSButtonBarItem *)item
 {
 	[self prepareCellWithItem:item];
 	//	NSRect frame = [item frame];
@@ -653,16 +652,16 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	 }
 }
 
-- (void)calculateFrameSizeForItem:(AMButtonBarItem *)item
+- (void)calculateFrameSizeForItem:(ORSButtonBarItem *)item
 {
 	[self prepareCellWithItem:item];
 	NSRect frame = [item frame];
 	frame.size.height = AM_BUTTON_HEIGHT;
-	frame.size.width = [(AMButtonBarCell *)[self cellForItem:item] widthForFrame:frame];
+	frame.size.width = [(ORSButtonBarCell *)[self cellForItem:item] widthForFrame:frame];
 	[item setFrame:frame];
 }
 
-- (void)prepareCellWithItem:(AMButtonBarItem *)item
+- (void)prepareCellWithItem:(ORSButtonBarItem *)item
 {
 	// make a working copy
 	if (![item isSeparatorItem]) {
@@ -676,7 +675,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
-- (NSCell *)cellForItem:(AMButtonBarItem *)item
+- (NSCell *)cellForItem:(ORSButtonBarItem *)item
 {
 	NSCell *result;
 	if ([item isSeparatorItem]) {
@@ -687,12 +686,12 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	return result;
 }
 
-- (void)mouseOverItem:(AMButtonBarItem *)mouseOverItem
+- (void)mouseOverItem:(ORSButtonBarItem *)mouseOverItem
 {
 	BOOL mouseOver;
 	BOOL needsRedraw;
 	NSEnumerator *enumerator = [[self items] objectEnumerator];
-	AMButtonBarItem *item;
+	ORSButtonBarItem *item;
 	while ((item = [enumerator nextObject])) {
 		mouseOver = (item == mouseOverItem);
 		needsRedraw = ([item isMouseOver] != mouseOver);
@@ -709,7 +708,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSEvent *theEvent = [NSApp currentEvent];
 	NSPoint point = [value pointValue];
 	point = [self convertPoint:point fromView:nil];
-	AMButtonBarItem *item = [self itemAtPoint:point];
+	ORSButtonBarItem *item = [self itemAtPoint:point];
 	if (item && [item isEnabled]) {
 		int oldState = [item state];
 		[item setState:NSOnState];
@@ -736,13 +735,13 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
-- (void)didClickItem:(AMButtonBarItem *)theItem
+- (void)didClickItem:(ORSButtonBarItem *)theItem
 {
 	BOOL didChangeSelection = NO;
 	if (![self allowsMultipleSelection]) {
 		if ([theItem state] == NSOffState) {
 			NSEnumerator *enumerator = [[self items] objectEnumerator];
-			AMButtonBarItem *item;
+			ORSButtonBarItem *item;
 			while ((item = [enumerator nextObject])) {
 				[item setState:((item == theItem) ? NSOnState : NSOffState)];
 			}
@@ -755,7 +754,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 		didChangeSelection = YES;
 	}
 	if (didChangeSelection) {
-		NSNotification *notification = [NSNotification notificationWithName:AMButtonBarSelectionDidChangeNotification object:self userInfo:[NSDictionary dictionaryWithObject:[self selectedItemIdentifiers] forKey:@"selectedItems"]];
+		NSNotification *notification = [NSNotification notificationWithName:ORSButtonBarSelectionDidChangeNotification object:self userInfo:[NSDictionary dictionaryWithObject:[self selectedItemIdentifiers] forKey:@"selectedItems"]];
 		NSAccessibilityPostNotification(self, NSAccessibilitySelectedChildrenChangedNotification);
 		[self sendActionForItem:theItem];
 		if ([self delegateRespondsToSelectionDidChange]) {
@@ -765,7 +764,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	}
 }
 
-- (void)sendActionForItem:(AMButtonBarItem *)item
+- (void)sendActionForItem:(ORSButtonBarItem *)item
 {
 	if ([item target]) {
 		[NSApp sendAction:[item action] to:[item target] from:item];
@@ -780,7 +779,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 - (void)mouseEntered:(NSEvent *)theEvent
 {
 	//NSLog(@"mouseEntered:");
-	AMButtonBarItem *item = [theEvent userData];
+	ORSButtonBarItem *item = [theEvent userData];
 	if ([item isEnabled]) {
 		[item setMouseOver:YES];
 		[self setNeedsDisplayInRect:[item frame]];
@@ -790,7 +789,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 - (void)mouseExited:(NSEvent *)theEvent
 {
 	//NSLog(@"mouseExited:");
-	AMButtonBarItem *item = [theEvent userData];
+	ORSButtonBarItem *item = [theEvent userData];
 	[item setMouseOver:NO];
 	[self setNeedsDisplayInRect:[item frame]];
 }
@@ -807,7 +806,6 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 
 - (void)keyDown:(NSEvent *)theEvent
 {
-	//ORSDEBUGLOG(@"Key down in AMButtonBar: %@", theEvent);
 	NSString *characters  = [theEvent charactersIgnoringModifiers];
 	// Check to see if it's tab, shift-tab, or space, which we implement
 	if ([characters isEqualToString: @"\t"]) // Tab
@@ -853,8 +851,6 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	
 	if (result)
 	 {
-		//ORSDEBUGLOG(@"AMButtonBar became first responder");
-		
 		NSSelectionDirection selectionDirection = [[self window] keyViewSelectionDirection];
 		
 		if (selectionDirection==NSSelectingNext)
@@ -890,8 +886,6 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 
 -(BOOL) resignFirstResponder;
 {
-	//ORSDEBUGLOG(@"AMButtonBar resigned first responder");
-	
 	[self setFocusedItem: nil];
 	
 	[self setNeedsDisplay: YES];
@@ -987,7 +981,6 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	if (attributes == nil)
 	 {
 		attributes = [super accessibilityAttributeNames];
-		//ORSDEBUGLOG(@"attributes:%@", attributes);
 		attributes = [attributes arrayByAddingObject: NSAccessibilitySelectedChildrenAttribute];
 		[attributes retain];
 	 }
@@ -1036,7 +1029,7 @@ NSString *const AMButtonBarSelectionDidChangeNotification = @"AMButtonBarSelecti
 	NSRect pointRect = NSMakeRect(point.x, point.y, 1, 1);
 	NSPoint windowPoint = [[self window] convertRectFromScreen:pointRect].origin;
 	NSPoint localPoint = [self convertPoint: windowPoint fromView: nil];
-	AMButtonBarItem *hitItem = [self itemAtPoint: localPoint];
+	ORSButtonBarItem *hitItem = [self itemAtPoint: localPoint];
 	
 	if (hitItem == nil) return self;
 	
